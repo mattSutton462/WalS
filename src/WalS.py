@@ -27,9 +27,7 @@ def lexer(text):
             match = pattern.match(text)
             if match:
                 value = match.group(0)
-                if token == 'BAKE':
-                    tokens.append(('NEWLINE', '\n'))
-                elif token != 'WHITESPACE' and token != 'UNKNOWN':
+                if token != 'WHITESPACE' and token != 'UNKNOWN':
                     tokens.append((token, value))
                 text = text[match.end():]
                 break
@@ -55,6 +53,8 @@ def evaluate_expression(tokens):
                 result += num
             elif current_op.upper() == 'SLICE':
                 result -= num
+        elif token_type == 'BAKE':
+            print("\n")
         elif token_type in ['ADD', 'SLICE', 'MIX', 'FOLD']:
             current_op = token_value
     
