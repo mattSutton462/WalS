@@ -2,7 +2,7 @@
 
 #1. Addition and Subtraction
 # 3 add 3 slice 2
-# 12.0
+# 6.0
 
 #2. Multiplication and Division
 #10 mix 2 fold 5
