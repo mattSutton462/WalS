@@ -14,5 +14,3 @@
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
 
-## WalS Lexical Analyser: 
-- We decided to use a manually implemented lexical analyzer (lexer) for our programming language, where the lexer function takes a string of input text and breaks it down into tokens based on predefined patterns. Our lexer follows a manual approach to tokenization, where we explicitly define the token types and their corresponding patterns. This approach gives us complete control over the tokenization process and allows for ease of customization. Each token consists of a token type (INT, FLOAT, ADD, etc.) and its corresponding value in the input text. 
