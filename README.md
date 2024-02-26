@@ -1,7 +1,7 @@
 # WalS
 
 ### Abstract:
-- 
+* Instead of utilizing
 
 ### Token Definitions:
 * FLOAT: matches any floating-point number.
@@ -13,6 +13,7 @@
 * PREHEAT: matches with left parenthesis "(".
 * OVEN: matches with the right parenthesis ")".
 * BAKE: matches with the newline character "\n".
+* WHISK: declares a variable
 * ID: matches any sequence of letters or underscores starting with a letter or underscore.
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
