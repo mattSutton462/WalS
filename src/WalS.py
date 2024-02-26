@@ -2,28 +2,15 @@ import re
 
 # Token Definition
 tokens = [
-    # Personalized Cooking Tokens
-    # ('QTY', r'\d+'),
-    # ('ID', r'[a-zA-Z_]\w*'),
-    # ('ADD', r'\+'),
-    # ('SLICE', r'-'),
-    # ('MIX', r'\*'),
-    # ('FOLD', r'/'),
-    # ('PREHEAT', r'\('),
-    # ('OVEN', r'\)+'),
-    # ('BAKE', r'\n'),
-    # ('WHITESPACE', r'\s+'),
-    # ('UNKNOWN', r'.'),
-
-    # Cooking Term Defined Tokens
-    ('QTY', r'\d+'),
-    ('+', r'add|Add|ADD'),
-    ('-', r'slice|Slice|SLICE'),
-    ('*', r'mix|,Mix|MIX'),
-    ('/', r'fold|Fold|FOLD'),
-    ('(', r'preheat|Preheat|PREHEAT'),
-    (')', r'oven|Oven|OVEN'),
-    ('\n', r'bake|Bake|BAKE'),
+    ('FLOAT', r'\d+\.\d+'),
+    ('INT', r'\d+'),
+    ('ADD', r'add|Add|ADD'),
+    ('SLICE', r'slice|Slice|SLICE'),
+    ('MIX', r'mix|Mix|MIX'),
+    ('FOLD', r'fold|Fold|FOLD'),
+    ('PREHEAT', r'preheat|Preheat|PREHEAT'),
+    ('OVEN', r'oven|Oven|OVEN'),
+    ('BAKE', r'bake|Bake|BAKE'),
     ('ID', r'[a-zA-Z_]\w*'),
     ('WHITESPACE', r'\s+'),
     ('UNKNOWN', r'.'),
@@ -40,7 +27,9 @@ def lexer(text):
             match = pattern.match(text)
             if match:
                 value = match.group(0)
-                if token != 'WHITESPACE' and token != 'NEWLINE' and token != 'BAKE':
+                if token == 'BAKE':
+                    tokens.append(('NEWLINE', '\n'))
+                elif token != 'WHITESPACE' and token != 'UNKNOWN':
                     tokens.append((token, value))
                 text = text[match.end():]
                 break
@@ -48,14 +37,43 @@ def lexer(text):
             raise ValueError('Illegal character: %s' % text)
     return tokens
 
-# Testing the lexer using shell's standard input
-if __name__ == "__main__":
-    text = input("Enter your cooking instructions:\n")
+def evaluate_expression(tokens):
+    # Initialize variables to store the result and the current operation
+    result = None
+    current_op = None
+    
+    for token_type, token_value in tokens:
+        if token_type in ['INT', 'FLOAT']:
+            num = float(token_value)
+            if result is None:
+                result = num
+            elif current_op.upper() == 'MIX':
+                result *= num
+            elif current_op.upper() == 'FOLD':
+                result /= num
+            elif current_op.upper() == 'ADD':
+                result += num
+            elif current_op.upper() == 'SLICE':
+                result -= num
+        elif token_type in ['ADD', 'SLICE', 'MIX', 'FOLD']:
+            current_op = token_value
+    
+    return result if result is not None else 0
+
+# Shell text and user input
+text = print("Start Cooking (type 'exit' to quit): ")
+while True:
+    text = input("WalS > ")
+    if text.lower() == 'exit':
+        break
+    
     tokens = lexer(text)
-    for token in tokens:
-        print(token)
+    result = evaluate_expression(tokens)
+    if result == 0:
+        print("", end='')
+    else:
+        print(result)
 
-# Example prompt for Lexer
-# 3 mix Preheat 5 slice 3 Oven BAKE
-# 3*(5-3) 
-
+    # Displays Tokens
+    # for token in tokens:
+    #     print(token)
