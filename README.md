@@ -1,11 +1,36 @@
 # WalS
 
-## Set of tokens using regular expression:
-* IDENTIFIER: matches any sequence of letters, digits, or underscores starting with a letter or underscore.
-* INTEGER_LITERAL: matches any sequence of digits.
-* FLOAT_LITERAL: matches any floating-point number.
-* STRING_LITERAL: matches any sequence of characters enclosed in double-quotes.
-* OPERATOR_PLUS / OPERATOR_MINUS: match the plus and minus operators, respectively.
+### Abstract:
+* For all you aspired cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes input text to parse and evaluate expressions. 
 
-## How Ply works with our programming language (WalS): 
-- Ply generates a lexical analyzer based on the token definitions and regular expressions provided. The generated lexer can then be used to tokenize input text, producing a stream of tokens that can be processed further by a parser or other components of a compiler or interpreter.
+### Token Definitions:
+* FLOAT: matches any floating-point number.
+* INT: matches any sequence of digits.
+* ADD: matches with the addition operator "+".
+* SLICE: matches with the subtraction operator "-".
+* MIX: matches with the multiplication operator "*".
+* FOLD: matches with the division operator "/".
+* PREHEAT: matches with left parenthesis "(".
+* OVEN: matches with the right parenthesis ")".
+* BAKE: matches with the newline character "\n".
+* WHISK: declares a variable
+* ID: matches any sequence of letters or underscores starting with a letter or underscore.
+* WHITESPACE: matches with any whitespace.
+* UNKNOWN: matches with any input that is not tokenized.
+
+### Code Examples:
+**1. Addition and Subtraction**
+```
+3 add 3 slice 2
+12.0
+```
+**2. Multiplication and Division**
+```
+10 mix 2 fold 5
+4.0
+```
+**3. Handling Decimal Numbers (Float)**
+```
+2.5 mix 3.5 slice 3 
+5.75
+```
