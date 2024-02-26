@@ -1,19 +1,20 @@
 import re
 
-# Token Definition
+# Token Declaration
 tokens = [
-    ('FLOAT', r'\d+\.\d+'),
-    ('INT', r'\d+'),
-    ('ADD', r'add|Add|ADD'),
-    ('SLICE', r'slice|Slice|SLICE'),
-    ('MIX', r'mix|Mix|MIX'),
-    ('FOLD', r'fold|Fold|FOLD'),
-    ('PREHEAT', r'preheat|Preheat|PREHEAT'),
-    ('OVEN', r'oven|Oven|OVEN'),
-    ('BAKE', r'bake|Bake|BAKE'),
-    ('ID', r'[a-zA-Z_]\w*'),
-    ('WHITESPACE', r'\s+'),
-    ('UNKNOWN', r'.'),
+('FLOAT', r'\d+\.\d+'),                     # Floating Point Numbers
+('INT', r'\d+'),                            # Integer Numbers
+('ADD', r'add|Add|ADD'),                    # Addition
+('SLICE', r'slice|Slice|SLICE'),            # Subtraction
+('MIX', r'mix|Mix|MIX'),                    # Multiplication
+('FOLD', r'fold|Fold|FOLD'),                # Division
+('PREHEAT', r'preheat|Preheat|PREHEAT'),    # Left Paren
+('OVEN', r'oven|Oven|OVEN'),                # Right Paren
+('BAKE', r'bake|Bake|BAKE'),                # Newline
+('WHISK', r'whisk|Whisk|WHISK'),            # Declare a value
+('ID', r'[a-zA-Z_]\w*'),                    # String
+('WHITESPACE', r'\s+'),                     # Whitespace
+('UNKNOWN', r'.'),                          # NOT LISTED
 ]
 
 # Compile regular expressions for tokens
@@ -65,8 +66,8 @@ text = print("Start Cooking (type 'exit' to quit): ")
 while True:
     text = input("WalS > ")
     if text.lower() == 'exit':
-        break
-    
+        break 
+
     tokens = lexer(text)
     result = evaluate_expression(tokens)
     if result == 0:
