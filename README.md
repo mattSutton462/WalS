@@ -21,9 +21,9 @@
 ### Code Examples:
 **1. Addition and Subtraction**
 ```
-// 3 + 5 - 2 = 6
 Wals > 3 add 5 slice 2
 Wals > 6.0
+// 3 + 5 - 2 = 6
 ```
 **2. Multiplication and Division**
 ```
