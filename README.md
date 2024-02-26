@@ -14,3 +14,19 @@
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
 
+### Code Examples:
+**1. Addition and Subtraction**
+```
+3 add 3 slice 2
+12.0
+```
+**2. Addition and Subtraction**
+```
+10 mix 2 fold 5
+4.0
+```
+**3. Handling Decimal Numbers (Float)**
+```
+2.5 mix 3.5 slice 3 
+5.75
+```
