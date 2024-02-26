@@ -21,8 +21,8 @@
 ### Code Examples:
 **1. Addition and Subtraction**
 ```
-3 add 3 slice 2
-12.0
+3 add 5 slice 2
+6.0
 ```
 **2. Multiplication and Division**
 ```
