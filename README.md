@@ -1,11 +1,18 @@
 # WalS
 
-## Set of tokens using regular expression:
-* IDENTIFIER: matches any sequence of letters, digits, or underscores starting with a letter or underscore.
-* INTEGER_LITERAL: matches any sequence of digits.
-* FLOAT_LITERAL: matches any floating-point number.
-* STRING_LITERAL: matches any sequence of characters enclosed in double-quotes.
-* OPERATOR_PLUS / OPERATOR_MINUS: match the plus and minus operators, respectively.
+## Token Definitions:
+* FLOAT: matches any floating-point number.
+* INT: matches any sequence of digits.
+* ADD: matches with the addition operator "+".
+* SLICE: matches with the subtraction operator "-".
+* MIX: matches with the multiplication operator "*".
+* FOLD: matches with the division operator "/".
+* PREHEAT: matches with left parenthesis "(".
+* OVEN: matches with the right parenthesis ")".
+* BAKE: matches with the Newline (/n) character.
+* ID: matches any sequence of letters, digits, or underscores starting with a letter or underscore.
+* WHITESPACE: matches with any whitespace.
+* UNKNOWN: matches with any input that is not tokenized.
 
-## How Ply works with our programming language (WalS): 
-- Ply generates a lexical analyzer based on the token definitions and regular expressions provided. The generated lexer can then be used to tokenize input text, producing a stream of tokens that can be processed further by a parser or other components of a compiler or interpreter.
+## WalS Lexical Analyser: 
+- We decided to use a manually implemented lexical analyzer (lexer) for our programming language, where the lexer function takes a string of input text and breaks it down into tokens based on predefined patterns. Our lexer follows a manual approach to tokenization, where we explicitly define the token types and their corresponding patterns. This approach gives us complete control over the tokenization process and allows for ease of customization. Each token consists of a token type (INT, FLOAT, ADD, etc.) and its corresponding value in the input text. 
