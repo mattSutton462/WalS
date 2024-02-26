@@ -9,8 +9,8 @@
 * FOLD: matches with the division operator "/".
 * PREHEAT: matches with left parenthesis "(".
 * OVEN: matches with the right parenthesis ")".
-* BAKE: matches with the Newline (/n) character.
-* ID: matches any sequence of letters, digits, or underscores starting with a letter or underscore.
+* BAKE: matches with the newline character "\n".
+* ID: matches any sequence of letters or underscores starting with a letter or underscore.
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
 
