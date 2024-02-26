@@ -1,7 +1,7 @@
 # WalS
 
 ### Abstract:
-* For all you aspired cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes input text to parse and evaluate expressions. 
+* For all you aspiring coding cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes input text to parse and evaluate expressions. 
 
 ### Token Definitions:
 * FLOAT: matches any floating-point number.
