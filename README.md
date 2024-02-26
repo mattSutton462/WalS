@@ -21,16 +21,19 @@
 ### Code Examples:
 **1. Addition and Subtraction**
 ```
+// 3+5-2
 3 add 5 slice 2
 6.0
 ```
 **2. Multiplication and Division**
 ```
+// 10*2/5
 10 mix 2 fold 5
 4.0
 ```
 **3. Handling Decimal Numbers (Float)**
 ```
-2.5 mix 3.5 slice 3 
-5.75
+// 2.5*3.5-3.25
+2.5 mix 3.5 slice 3.25
+5.5
 ```
