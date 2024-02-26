@@ -20,7 +20,7 @@
 3 add 3 slice 2
 12.0
 ```
-**2. Addition and Subtraction**
+**2. Multiplication and Division**
 ```
 10 mix 2 fold 5
 4.0
