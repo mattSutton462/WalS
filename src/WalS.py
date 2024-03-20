@@ -76,5 +76,6 @@ while True:
         print(result)
 
     # Displays Tokens
-    # for token in tokens:
-    #     print(token)
+    # 2 mix 2.5 slice 3
+    for token in tokens:
+        print(token)
