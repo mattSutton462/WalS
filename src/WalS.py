@@ -98,5 +98,6 @@ while True:
     print(result)  # Print or handle the result as needed
 
     # Displays Tokens
-    # for token in tokens:
-    #     print(token)
+    # 2 mix 2.5 slice 3
+    for token in tokens:
+        print(token)
