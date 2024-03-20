@@ -1,0 +1,413 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    UNKNOWN
+    WHITESPACE
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> INT
+Rule 2     expression -> FLOAT
+Rule 3     expression -> expression ADD expression
+Rule 4     expression -> expression SLICE expression
+Rule 5     expression -> expression MIX expression
+Rule 6     expression -> expression FOLD expression
+Rule 7     expression -> PREHEAT expression OVEN
+Rule 8     expression -> expression BAKE
+Rule 9     expression -> WHISK ID BAKE
+
+Terminals, with rules where they appear
+
+ADD                  : 3
+BAKE                 : 8 9
+FLOAT                : 2
+FOLD                 : 6
+ID                   : 9
+INT                  : 1
+MIX                  : 5
+OVEN                 : 7
+PREHEAT              : 7
+SLICE                : 4
+UNKNOWN              : 
+WHISK                : 9
+WHITESPACE           : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3 3 4 4 5 5 6 6 7 8 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+
+state 2
+
+    (1) expression -> INT .
+
+    ADD             reduce using rule 1 (expression -> INT .)
+    SLICE           reduce using rule 1 (expression -> INT .)
+    MIX             reduce using rule 1 (expression -> INT .)
+    FOLD            reduce using rule 1 (expression -> INT .)
+    BAKE            reduce using rule 1 (expression -> INT .)
+    $end            reduce using rule 1 (expression -> INT .)
+    OVEN            reduce using rule 1 (expression -> INT .)
+
+
+state 3
+
+    (2) expression -> FLOAT .
+
+    ADD             reduce using rule 2 (expression -> FLOAT .)
+    SLICE           reduce using rule 2 (expression -> FLOAT .)
+    MIX             reduce using rule 2 (expression -> FLOAT .)
+    FOLD            reduce using rule 2 (expression -> FLOAT .)
+    BAKE            reduce using rule 2 (expression -> FLOAT .)
+    $end            reduce using rule 2 (expression -> FLOAT .)
+    OVEN            reduce using rule 2 (expression -> FLOAT .)
+
+
+state 4
+
+    (7) expression -> PREHEAT . expression OVEN
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 11
+
+state 5
+
+    (9) expression -> WHISK . ID BAKE
+
+    ID              shift and go to state 12
+
+
+state 6
+
+    (3) expression -> expression ADD . expression
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 13
+
+state 7
+
+    (4) expression -> expression SLICE . expression
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 14
+
+state 8
+
+    (5) expression -> expression MIX . expression
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 15
+
+state 9
+
+    (6) expression -> expression FOLD . expression
+    (1) expression -> . INT
+    (2) expression -> . FLOAT
+    (3) expression -> . expression ADD expression
+    (4) expression -> . expression SLICE expression
+    (5) expression -> . expression MIX expression
+    (6) expression -> . expression FOLD expression
+    (7) expression -> . PREHEAT expression OVEN
+    (8) expression -> . expression BAKE
+    (9) expression -> . WHISK ID BAKE
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+    PREHEAT         shift and go to state 4
+    WHISK           shift and go to state 5
+
+    expression                     shift and go to state 16
+
+state 10
+
+    (8) expression -> expression BAKE .
+
+    ADD             reduce using rule 8 (expression -> expression BAKE .)
+    SLICE           reduce using rule 8 (expression -> expression BAKE .)
+    MIX             reduce using rule 8 (expression -> expression BAKE .)
+    FOLD            reduce using rule 8 (expression -> expression BAKE .)
+    BAKE            reduce using rule 8 (expression -> expression BAKE .)
+    $end            reduce using rule 8 (expression -> expression BAKE .)
+    OVEN            reduce using rule 8 (expression -> expression BAKE .)
+
+
+state 11
+
+    (7) expression -> PREHEAT expression . OVEN
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+    OVEN            shift and go to state 17
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+
+state 12
+
+    (9) expression -> WHISK ID . BAKE
+
+    BAKE            shift and go to state 18
+
+
+state 13
+
+    (3) expression -> expression ADD expression .
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+  ! shift/reduce conflict for ADD resolved as shift
+  ! shift/reduce conflict for SLICE resolved as shift
+  ! shift/reduce conflict for MIX resolved as shift
+  ! shift/reduce conflict for FOLD resolved as shift
+  ! shift/reduce conflict for BAKE resolved as shift
+    $end            reduce using rule 3 (expression -> expression ADD expression .)
+    OVEN            reduce using rule 3 (expression -> expression ADD expression .)
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+  ! ADD             [ reduce using rule 3 (expression -> expression ADD expression .) ]
+  ! SLICE           [ reduce using rule 3 (expression -> expression ADD expression .) ]
+  ! MIX             [ reduce using rule 3 (expression -> expression ADD expression .) ]
+  ! FOLD            [ reduce using rule 3 (expression -> expression ADD expression .) ]
+  ! BAKE            [ reduce using rule 3 (expression -> expression ADD expression .) ]
+
+
+state 14
+
+    (4) expression -> expression SLICE expression .
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+  ! shift/reduce conflict for ADD resolved as shift
+  ! shift/reduce conflict for SLICE resolved as shift
+  ! shift/reduce conflict for MIX resolved as shift
+  ! shift/reduce conflict for FOLD resolved as shift
+  ! shift/reduce conflict for BAKE resolved as shift
+    $end            reduce using rule 4 (expression -> expression SLICE expression .)
+    OVEN            reduce using rule 4 (expression -> expression SLICE expression .)
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+  ! ADD             [ reduce using rule 4 (expression -> expression SLICE expression .) ]
+  ! SLICE           [ reduce using rule 4 (expression -> expression SLICE expression .) ]
+  ! MIX             [ reduce using rule 4 (expression -> expression SLICE expression .) ]
+  ! FOLD            [ reduce using rule 4 (expression -> expression SLICE expression .) ]
+  ! BAKE            [ reduce using rule 4 (expression -> expression SLICE expression .) ]
+
+
+state 15
+
+    (5) expression -> expression MIX expression .
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+  ! shift/reduce conflict for ADD resolved as shift
+  ! shift/reduce conflict for SLICE resolved as shift
+  ! shift/reduce conflict for MIX resolved as shift
+  ! shift/reduce conflict for FOLD resolved as shift
+  ! shift/reduce conflict for BAKE resolved as shift
+    $end            reduce using rule 5 (expression -> expression MIX expression .)
+    OVEN            reduce using rule 5 (expression -> expression MIX expression .)
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+  ! ADD             [ reduce using rule 5 (expression -> expression MIX expression .) ]
+  ! SLICE           [ reduce using rule 5 (expression -> expression MIX expression .) ]
+  ! MIX             [ reduce using rule 5 (expression -> expression MIX expression .) ]
+  ! FOLD            [ reduce using rule 5 (expression -> expression MIX expression .) ]
+  ! BAKE            [ reduce using rule 5 (expression -> expression MIX expression .) ]
+
+
+state 16
+
+    (6) expression -> expression FOLD expression .
+    (3) expression -> expression . ADD expression
+    (4) expression -> expression . SLICE expression
+    (5) expression -> expression . MIX expression
+    (6) expression -> expression . FOLD expression
+    (8) expression -> expression . BAKE
+
+  ! shift/reduce conflict for ADD resolved as shift
+  ! shift/reduce conflict for SLICE resolved as shift
+  ! shift/reduce conflict for MIX resolved as shift
+  ! shift/reduce conflict for FOLD resolved as shift
+  ! shift/reduce conflict for BAKE resolved as shift
+    $end            reduce using rule 6 (expression -> expression FOLD expression .)
+    OVEN            reduce using rule 6 (expression -> expression FOLD expression .)
+    ADD             shift and go to state 6
+    SLICE           shift and go to state 7
+    MIX             shift and go to state 8
+    FOLD            shift and go to state 9
+    BAKE            shift and go to state 10
+
+  ! ADD             [ reduce using rule 6 (expression -> expression FOLD expression .) ]
+  ! SLICE           [ reduce using rule 6 (expression -> expression FOLD expression .) ]
+  ! MIX             [ reduce using rule 6 (expression -> expression FOLD expression .) ]
+  ! FOLD            [ reduce using rule 6 (expression -> expression FOLD expression .) ]
+  ! BAKE            [ reduce using rule 6 (expression -> expression FOLD expression .) ]
+
+
+state 17
+
+    (7) expression -> PREHEAT expression OVEN .
+
+    ADD             reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    SLICE           reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    MIX             reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    FOLD            reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    BAKE            reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    $end            reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+    OVEN            reduce using rule 7 (expression -> PREHEAT expression OVEN .)
+
+
+state 18
+
+    (9) expression -> WHISK ID BAKE .
+
+    ADD             reduce using rule 9 (expression -> WHISK ID BAKE .)
+    SLICE           reduce using rule 9 (expression -> WHISK ID BAKE .)
+    MIX             reduce using rule 9 (expression -> WHISK ID BAKE .)
+    FOLD            reduce using rule 9 (expression -> WHISK ID BAKE .)
+    BAKE            reduce using rule 9 (expression -> WHISK ID BAKE .)
+    $end            reduce using rule 9 (expression -> WHISK ID BAKE .)
+    OVEN            reduce using rule 9 (expression -> WHISK ID BAKE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ADD in state 13 resolved as shift
+WARNING: shift/reduce conflict for SLICE in state 13 resolved as shift
+WARNING: shift/reduce conflict for MIX in state 13 resolved as shift
+WARNING: shift/reduce conflict for FOLD in state 13 resolved as shift
+WARNING: shift/reduce conflict for BAKE in state 13 resolved as shift
+WARNING: shift/reduce conflict for ADD in state 14 resolved as shift
+WARNING: shift/reduce conflict for SLICE in state 14 resolved as shift
+WARNING: shift/reduce conflict for MIX in state 14 resolved as shift
+WARNING: shift/reduce conflict for FOLD in state 14 resolved as shift
+WARNING: shift/reduce conflict for BAKE in state 14 resolved as shift
+WARNING: shift/reduce conflict for ADD in state 15 resolved as shift
+WARNING: shift/reduce conflict for SLICE in state 15 resolved as shift
+WARNING: shift/reduce conflict for MIX in state 15 resolved as shift
+WARNING: shift/reduce conflict for FOLD in state 15 resolved as shift
+WARNING: shift/reduce conflict for BAKE in state 15 resolved as shift
+WARNING: shift/reduce conflict for ADD in state 16 resolved as shift
+WARNING: shift/reduce conflict for SLICE in state 16 resolved as shift
+WARNING: shift/reduce conflict for MIX in state 16 resolved as shift
+WARNING: shift/reduce conflict for FOLD in state 16 resolved as shift
+WARNING: shift/reduce conflict for BAKE in state 16 resolved as shift
