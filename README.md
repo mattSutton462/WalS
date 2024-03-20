@@ -1,7 +1,7 @@
 # WalS
 
 ### Abstract:
-* For all you aspired cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes input text to parse and evaluate expressions. 
+* For all you aspiring coding cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes that input text to parse and evaluate expressions. 
 
 ### Token Definitions:
 * FLOAT: matches any floating-point number.
@@ -27,13 +27,13 @@ Wals > 6.0
 ```
 **2. Multiplication and Division**
 ```
-// 10 * 2 / 5 = 4
 Wals > 10 mix 2 fold 5
 Wals > 4.0
+// 10 * 2 / 5 = 4
 ```
 **3. Handling Decimal Numbers (Float)**
 ```
-// 2.5 * 3.5 - 3.25 = 5.5
 Wals > 2.5 mix 3.5 slice 3.25
 Wals > 5.5
+// 2.5 * 3.5 - 3.25 = 5.5
 ```
