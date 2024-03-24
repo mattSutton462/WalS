@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftADDSUBleftMULDIVrightEXPrightUMINUSADD BOOLEAN DECREMENT DIV EQ EXP FLOAT GT GTE ID INCREMENT INT LPAREN LT LTE MUL NEQ RPAREN SUBstatement : expressionexpression : expression ADD expression\n                  | expression SUB expression\n                  | expression MUL expression\n                  | expression DIV expression\n                  | expression EXP expressionexpression : SUB expression %prec UMINUSexpression : LPAREN expression RPARENexpression : INT\n                  | FLOATexpression : IDexpression : BOOLEAN'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDErightUMINUSrightPOWERnonassocEQNEQLTLTEGTGTEleftANDleftORrightNOTAND ASSIGN DECREMENT DIVIDE ELSE EQ FOR GT GTE ID IF INCREMENT LPAREN LT LTE MINUS NEQ NOT NUMBER OR PLUS POWER RPAREN TIMES WHILEstatement : expressionexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression POWER expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : IDexpression : ID ASSIGN expressionexpression : ID INCREMENT\n                  | ID DECREMENT'
     
-_lr_action_items = {'SUB':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,],[3,10,3,3,-9,-10,-11,-12,3,3,3,3,3,-7,10,-2,-3,-4,-5,-6,-8,]),'LPAREN':([0,3,4,9,10,11,12,13,],[4,4,4,4,4,4,4,4,]),'INT':([0,3,4,9,10,11,12,13,],[5,5,5,5,5,5,5,5,]),'FLOAT':([0,3,4,9,10,11,12,13,],[6,6,6,6,6,6,6,6,]),'ID':([0,3,4,9,10,11,12,13,],[7,7,7,7,7,7,7,7,]),'BOOLEAN':([0,3,4,9,10,11,12,13,],[8,8,8,8,8,8,8,8,]),'$end':([1,2,5,6,7,8,14,16,17,18,19,20,21,],[0,-1,-9,-10,-11,-12,-7,-2,-3,-4,-5,-6,-8,]),'ADD':([2,5,6,7,8,14,15,16,17,18,19,20,21,],[9,-9,-10,-11,-12,-7,9,-2,-3,-4,-5,-6,-8,]),'MUL':([2,5,6,7,8,14,15,16,17,18,19,20,21,],[11,-9,-10,-11,-12,-7,11,11,11,-4,-5,-6,-8,]),'DIV':([2,5,6,7,8,14,15,16,17,18,19,20,21,],[12,-9,-10,-11,-12,-7,12,12,12,-4,-5,-6,-8,]),'EXP':([2,5,6,7,8,14,15,16,17,18,19,20,21,],[13,-9,-10,-11,-12,-7,13,13,13,13,13,13,-8,]),'RPAREN':([5,6,7,8,14,15,16,17,18,19,20,21,],[-9,-10,-11,-12,-7,21,-2,-3,-4,-5,-6,-8,]),}
+_lr_action_items = {'MINUS':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,],[3,8,3,3,-9,-10,3,3,3,3,3,-7,8,3,-12,-13,-2,-3,-4,-5,-6,-8,8,]),'LPAREN':([0,3,4,7,8,9,10,11,14,],[4,4,4,4,4,4,4,4,4,]),'NUMBER':([0,3,4,7,8,9,10,11,14,],[5,5,5,5,5,5,5,5,5,]),'ID':([0,3,4,7,8,9,10,11,14,],[6,6,6,6,6,6,6,6,6,]),'$end':([1,2,5,6,12,15,16,17,18,19,20,21,22,23,],[0,-1,-9,-10,-7,-12,-13,-2,-3,-4,-5,-6,-8,-11,]),'PLUS':([2,5,6,12,13,15,16,17,18,19,20,21,22,23,],[7,-9,-10,-7,7,-12,-13,-2,-3,-4,-5,-6,-8,7,]),'TIMES':([2,5,6,12,13,15,16,17,18,19,20,21,22,23,],[9,-9,-10,-7,9,-12,-13,9,9,-4,-5,-6,-8,9,]),'DIVIDE':([2,5,6,12,13,15,16,17,18,19,20,21,22,23,],[10,-9,-10,-7,10,-12,-13,10,10,-4,-5,-6,-8,10,]),'POWER':([2,5,6,12,13,15,16,17,18,19,20,21,22,23,],[11,-9,-10,11,11,-12,-13,11,11,11,11,11,-8,11,]),'RPAREN':([5,6,12,13,15,16,17,18,19,20,21,22,23,],[-9,-10,-7,22,-12,-13,-2,-3,-4,-5,-6,-8,-11,]),'ASSIGN':([6,],[14,]),'INCREMENT':([6,],[15,]),'DECREMENT':([6,],[16,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,3,4,9,10,11,12,13,],[2,14,15,16,17,18,19,20,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,3,4,7,8,9,10,11,14,],[2,12,13,17,18,19,20,21,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,16 +27,17 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> expression','statement',1,'p_statement_expr','WalS.py',71),
-  ('expression -> expression ADD expression','expression',3,'p_expression_binop','WalS.py',75),
-  ('expression -> expression SUB expression','expression',3,'p_expression_binop','WalS.py',76),
-  ('expression -> expression MUL expression','expression',3,'p_expression_binop','WalS.py',77),
-  ('expression -> expression DIV expression','expression',3,'p_expression_binop','WalS.py',78),
-  ('expression -> expression EXP expression','expression',3,'p_expression_binop','WalS.py',79),
-  ('expression -> SUB expression','expression',2,'p_expression_unary_minus','WalS.py',92),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','WalS.py',96),
-  ('expression -> INT','expression',1,'p_expression_number','WalS.py',100),
-  ('expression -> FLOAT','expression',1,'p_expression_number','WalS.py',101),
-  ('expression -> ID','expression',1,'p_expression_var','WalS.py',105),
-  ('expression -> BOOLEAN','expression',1,'p_expression_boolean','WalS.py',110),
+  ('statement -> expression','statement',1,'p_statement_expr','WalS.py',78),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','WalS.py',82),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','WalS.py',83),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','WalS.py',84),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','WalS.py',85),
+  ('expression -> expression POWER expression','expression',3,'p_expression_binop','WalS.py',86),
+  ('expression -> MINUS expression','expression',2,'p_expression_unary_minus','WalS.py',99),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','WalS.py',103),
+  ('expression -> NUMBER','expression',1,'p_expression_number','WalS.py',107),
+  ('expression -> ID','expression',1,'p_expression_id','WalS.py',111),
+  ('expression -> ID ASSIGN expression','expression',3,'p_expression_assignment','WalS.py',116),
+  ('expression -> ID INCREMENT','expression',2,'p_expression_increment_decrement','WalS.py',121),
+  ('expression -> ID DECREMENT','expression',2,'p_expression_increment_decrement','WalS.py',122),
 ]

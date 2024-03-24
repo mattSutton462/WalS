@@ -1,50 +1,53 @@
 import ply.lex as lex
 import ply.yacc as yacc
 
-# Token Declaration
+# Token declaration
 tokens = [
-    'FLOAT', 'INT', 'ADD', 'SUB', 'MUL', 'DIV', 'EXP',  # Arithmetic operators
-    'LPAREN', 'RPAREN',                                 # Parentheses
-    'ID', 'INCREMENT', 'DECREMENT',                     # Variables, incrementors, decrementors
-    'BOOLEAN', 'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE',   # Booleans and comparison operators
+    'ID', 'NUMBER',
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER',
+    'LPAREN', 'RPAREN',
+    'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE',  # Comparison operators
+    'AND', 'OR', 'NOT',                    # Logical operators
+    'IF', 'ELSE', 'WHILE', 'FOR',          # Control flow keywords
+    'INCREMENT', 'DECREMENT',              # Increment and decrement operators
+    'ASSIGN',                              # Assignment operator
 ]
 
+# Dictionary to store variables
+variables = {}
+
 # Token regular expressions
-t_ADD = r'\+'
-t_SUB = r'-'
-t_MUL = r'\*'
-t_DIV = r'/'
-t_EXP = r'\^'
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_POWER = r'\^'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_INCREMENT = r'\+\+'
-t_DECREMENT = r'--'
 t_EQ = r'=='
 t_NEQ = r'!='
 t_LT = r'<'
 t_LTE = r'<='
 t_GT = r'>'
 t_GTE = r'>='
+t_AND = r'&&'
+t_OR = r'\|\|'
+t_NOT = r'!'
+t_IF = r'if'
+t_ELSE = r'else'
+t_WHILE = r'while'
+t_FOR = r'for'
+t_INCREMENT = r'\+\+'
+t_DECREMENT = r'--'
+t_ASSIGN = r'='
 
-# Regular expressions for tokens
-def t_FLOAT(t):
-    r'\d+\.\d+'
-    t.value = float(t.value)
-    return t
-
-def t_INT(t):
+def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = 'ID'  # Change type to ID for identifiers
-    return t
-
-def t_BOOLEAN(t):
-    r'true|false'
-    t.value = True if t.value == 'true' else False
     return t
 
 # Ignored characters
@@ -60,23 +63,27 @@ lexer = lex.lex()
 
 # Parsing rules
 precedence = (
-    ('left', 'ADD', 'SUB'),
-    ('left', 'MUL', 'DIV'),
-    ('right', 'EXP'),
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UMINUS'),  # Unary minus operator
+    ('right', 'POWER'),
+    ('nonassoc', 'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE'),  # Comparison operators
+    ('left', 'AND'),  # Logical AND
+    ('left', 'OR'),   # Logical OR
+    ('right', 'NOT'),  # Logical NOT
 )
 
 # Grammar rules
 def p_statement_expr(p):
     'statement : expression'
-    p[0] = p[1]
+    print(p[1])
 
 def p_expression_binop(p):
-    '''expression : expression ADD expression
-                  | expression SUB expression
-                  | expression MUL expression
-                  | expression DIV expression
-                  | expression EXP expression'''
+    '''expression : expression PLUS expression
+                  | expression MINUS expression
+                  | expression TIMES expression
+                  | expression DIVIDE expression
+                  | expression POWER expression'''
     if p[2] == '+':
         p[0] = p[1] + p[3]
     elif p[2] == '-':
@@ -89,7 +96,7 @@ def p_expression_binop(p):
         p[0] = p[1] ** p[3]
 
 def p_expression_unary_minus(p):
-    'expression : SUB expression %prec UMINUS'
+    'expression : MINUS expression %prec UMINUS'
     p[0] = -p[2]
 
 def p_expression_group(p):
@@ -97,18 +104,34 @@ def p_expression_group(p):
     p[0] = p[2]
 
 def p_expression_number(p):
-    '''expression : INT
-                  | FLOAT'''
+    'expression : NUMBER'
     p[0] = p[1]
 
-def p_expression_var(p):
+def p_expression_id(p):
     'expression : ID'
-    # You would handle variable lookup and assignment here
-    p[0] = p[1]
+    # Handle variable lookup here
+    p[0] = variables.get(p[1], 0)  # Return 0 if variable is not found
 
-def p_expression_boolean(p):
-    'expression : BOOLEAN'
-    p[0] = p[1]
+def p_expression_assignment(p):
+    'expression : ID ASSIGN expression'
+    variables[p[1]] = p[3]  # Assign value to variable
+    p[0] = p[3]  # Return the assigned value
+
+def p_expression_increment_decrement(p):
+    '''expression : ID INCREMENT
+                  | ID DECREMENT'''
+    if p[2] == '++':
+        if p[1] in variables:
+            variables[p[1]] += 1
+            p[0] = variables[p[1]]
+        else:
+            print(f"Variable '{p[1]}' not found!")
+    elif p[2] == '--':
+        if p[1] in variables:
+            variables[p[1]] -= 1
+            p[0] = variables[p[1]]
+        else:
+            print(f"Variable '{p[1]}' not found!")
 
 # Error rule for syntax errors
 def p_error(p):
@@ -117,24 +140,15 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-def evaluate_expression(text):
-    result = parser.parse(text)
-    return result if result is not None else 0
-
 # Shell text and user input
 print("Start Cooking (type 'exit' to quit): ")
 while True:
-    text = input("WalS > ")
+    text = input("Wals > ")
     if text.lower() == 'exit':
         break
 
     # Tokenize input
     lexer.input(text)
-    
-    # # Print all tokens
-    # for token in lexer:
-    #     print(token)
 
     # Evaluate and print result
-    result = evaluate_expression(text)
-    print(result)
+    parser.parse(text)
