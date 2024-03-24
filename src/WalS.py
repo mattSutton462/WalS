@@ -14,7 +14,7 @@ t_ADD = r'\+'
 t_SUB = r'-'
 t_MUL = r'\*'
 t_DIV = r'/'
-t_EXP = r'\*\*'
+t_EXP = r'\^'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_INCREMENT = r'\+\+'
@@ -85,7 +85,7 @@ def p_expression_binop(p):
         p[0] = p[1] * p[3]
     elif p[2] == '/':
         p[0] = p[1] / p[3]
-    elif p[2] == '**':
+    elif p[2] == '^':
         p[0] = p[1] ** p[3]
 
 def p_expression_unary_minus(p):
