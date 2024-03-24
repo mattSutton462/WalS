@@ -6,10 +6,11 @@ tokens = [
     'ID', 'NUMBER',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER',
     'LPAREN', 'RPAREN',
-    'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE',  # Comparison operators
+    'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE', # Comparison operators
     'AND', 'OR', 'NOT',                    # Logical operators
     'IF', 'ELSE', 'WHILE', 'FOR',          # Control flow keywords
     'INCREMENT', 'DECREMENT',              # Increment and decrement operators
+    'PRINT',                               # Print keyword
     'ASSIGN',                              # Assignment operator
 ]
 
@@ -40,6 +41,7 @@ t_FOR = r'for'
 t_INCREMENT = r'\+\+'
 t_DECREMENT = r'--'
 t_ASSIGN = r'='
+t_PRINT = r'print' 
 
 def t_NUMBER(t):
     r'\d+'
@@ -52,6 +54,11 @@ def t_ID(t):
 
 # Ignored characters
 t_ignore = ' \t'
+
+# Comment definition
+def t_COMMENT(t):
+    r'\#.*'
+    pass
 
 # Error handling rule
 def t_error(t):
@@ -73,10 +80,18 @@ precedence = (
     ('right', 'NOT'),  # Logical NOT
 )
 
+def p_statement_empty(p):
+    'statement : '
+    pass
+
 # Grammar rules
 def p_statement_expr(p):
-    'statement : expression'
-    print(p[1])
+    '''statement : expression
+                 | PRINT LPAREN expression RPAREN'''
+    if len(p) == 2:
+        print(p[1])
+    else:
+        print(p[3])
 
 def p_expression_binop(p):
     '''expression : expression PLUS expression
