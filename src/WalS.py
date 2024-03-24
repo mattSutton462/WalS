@@ -1,81 +1,140 @@
-import re
+import ply.lex as lex
+import ply.yacc as yacc
 
 # Token Declaration
 tokens = [
-('FLOAT', r'\d+\.\d+'),                     # Floating Point Numbers
-('INT', r'\d+'),                            # Integer Numbers
-('ADD', r'add|Add|ADD'),                    # Addition
-('SLICE', r'slice|Slice|SLICE'),            # Subtraction
-('MIX', r'mix|Mix|MIX'),                    # Multiplication
-('FOLD', r'fold|Fold|FOLD'),                # Division
-('PREHEAT', r'preheat|Preheat|PREHEAT'),    # Left Paren
-('OVEN', r'oven|Oven|OVEN'),                # Right Paren
-('BAKE', r'bake|Bake|BAKE'),                # Newline
-('WHISK', r'whisk|Whisk|WHISK'),            # Declare a value
-('ID', r'[a-zA-Z_]\w*'),                    # String
-('WHITESPACE', r'\s+'),                     # Whitespace
-('UNKNOWN', r'.'),                          # NOT LISTED
+    'FLOAT', 'INT', 'ADD', 'SUB', 'MUL', 'DIV', 'EXP',  # Arithmetic operators
+    'LPAREN', 'RPAREN',                                 # Parentheses
+    'ID', 'INCREMENT', 'DECREMENT',                     # Variables, incrementors, decrementors
+    'BOOLEAN', 'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE',   # Booleans and comparison operators
 ]
 
-# Compile regular expressions for tokens
-patterns = [(token, re.compile(pattern)) for token, pattern in tokens]
+# Token regular expressions
+t_ADD = r'\+'
+t_SUB = r'-'
+t_MUL = r'\*'
+t_DIV = r'/'
+t_EXP = r'\*\*'
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_INCREMENT = r'\+\+'
+t_DECREMENT = r'--'
+t_EQ = r'=='
+t_NEQ = r'!='
+t_LT = r'<'
+t_LTE = r'<='
+t_GT = r'>'
+t_GTE = r'>='
 
-def lexer(text):
-    tokens = []
-    while text:
-        match = None
-        for token, pattern in patterns:
-            match = pattern.match(text)
-            if match:
-                value = match.group(0)
-                if token != 'WHITESPACE' and token != 'UNKNOWN':
-                    tokens.append((token, value))
-                text = text[match.end():]
-                break
-        if not match:
-            raise ValueError('Illegal character: %s' % text)
-    return tokens
+# Regular expressions for tokens
+def t_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
 
-def evaluate_expression(tokens):
-    # Initialize variables to store the result and the current operation
-    result = None
-    current_op = None
-    
-    for token_type, token_value in tokens:
-        if token_type in ['INT', 'FLOAT']:
-            num = float(token_value)
-            if result is None:
-                result = num
-            elif current_op.upper() == 'MIX':
-                result *= num
-            elif current_op.upper() == 'FOLD':
-                result /= num
-            elif current_op.upper() == 'ADD':
-                result += num
-            elif current_op.upper() == 'SLICE':
-                result -= num
-        elif token_type == 'BAKE':
-            print("\n")
-        elif token_type in ['ADD', 'SLICE', 'MIX', 'FOLD']:
-            current_op = token_value
-    
+def t_INT(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = 'ID'  # Change type to ID for identifiers
+    return t
+
+def t_BOOLEAN(t):
+    r'true|false'
+    t.value = True if t.value == 'true' else False
+    return t
+
+# Ignored characters
+t_ignore = ' \t'
+
+# Error handling rule
+def t_error(t):
+    print("Illegal character '%s'" % t.value[0])
+    t.lexer.skip(1)
+
+# Build the lexer
+lexer = lex.lex()
+
+# Parsing rules
+precedence = (
+    ('left', 'ADD', 'SUB'),
+    ('left', 'MUL', 'DIV'),
+    ('right', 'EXP'),
+    ('right', 'UMINUS'),  # Unary minus operator
+)
+
+# Grammar rules
+def p_statement_expr(p):
+    'statement : expression'
+    p[0] = p[1]
+
+def p_expression_binop(p):
+    '''expression : expression ADD expression
+                  | expression SUB expression
+                  | expression MUL expression
+                  | expression DIV expression
+                  | expression EXP expression'''
+    if p[2] == '+':
+        p[0] = p[1] + p[3]
+    elif p[2] == '-':
+        p[0] = p[1] - p[3]
+    elif p[2] == '*':
+        p[0] = p[1] * p[3]
+    elif p[2] == '/':
+        p[0] = p[1] / p[3]
+    elif p[2] == '**':
+        p[0] = p[1] ** p[3]
+
+def p_expression_unary_minus(p):
+    'expression : SUB expression %prec UMINUS'
+    p[0] = -p[2]
+
+def p_expression_group(p):
+    'expression : LPAREN expression RPAREN'
+    p[0] = p[2]
+
+def p_expression_number(p):
+    '''expression : INT
+                  | FLOAT'''
+    p[0] = p[1]
+
+def p_expression_var(p):
+    'expression : ID'
+    # You would handle variable lookup and assignment here
+    p[0] = p[1]
+
+def p_expression_boolean(p):
+    'expression : BOOLEAN'
+    p[0] = p[1]
+
+# Error rule for syntax errors
+def p_error(p):
+    print("Syntax error in input!")
+
+# Build the parser
+parser = yacc.yacc()
+
+def evaluate_expression(text):
+    result = parser.parse(text)
     return result if result is not None else 0
 
 # Shell text and user input
-text = print("Start Cooking (type 'exit' to quit): ")
+print("Start Cooking (type 'exit' to quit): ")
 while True:
     text = input("WalS > ")
     if text.lower() == 'exit':
-        break 
+        break
 
-    tokens = lexer(text)
-    result = evaluate_expression(tokens)
-    if result == 0:
-        print("", end='')
-    else:
-        print(result)
+    # Tokenize input
+    lexer.input(text)
+    
+    # # Print all tokens
+    # for token in lexer:
+    #     print(token)
 
-    # Displays Tokens
-    # 2 mix 2.5 slice 3
-    for token in tokens:
-        print(token)
+    # Evaluate and print result
+    result = evaluate_expression(text)
+    print(result)
