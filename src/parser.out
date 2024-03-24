@@ -1,0 +1,108 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOLEAN
+    BREAK
+    DECREMENT
+    INCREMENT
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> expression
+Rule 2     statement -> assignment
+Rule 3     statement -> if_statement
+Rule 4     statement -> while_loop
+Rule 5     statement -> for_loop
+Rule 6     statement -> switch_statement
+Rule 7     statement -> match_statement
+Rule 8     assignment -> ID ASSIGN expression
+Rule 9     expression -> expression ADD expression
+Rule 10    expression -> expression SUB expression
+Rule 11    expression -> expression MUL expression
+Rule 12    expression -> expression DIV expression
+Rule 13    expression -> expression EXP expression
+Rule 14    expression -> expression EQ expression
+Rule 15    expression -> expression NEQ expression
+Rule 16    expression -> expression LT expression
+Rule 17    expression -> expression LTE expression
+Rule 18    expression -> expression GT expression
+Rule 19    expression -> expression GTE expression
+Rule 20    expression -> expression AND expression
+Rule 21    expression -> expression OR expression
+Rule 22    expression -> SUB expression
+Rule 23    expression -> LPAREN expression RPAREN
+Rule 24    expression -> INT
+Rule 25    expression -> FLOAT
+Rule 26    expression -> ID
+Rule 27    if_statement -> IF LPAREN expression RPAREN statement
+Rule 28    if_statement -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 29    while_loop -> WHILE LPAREN expression RPAREN statement
+Rule 30    for_loop -> FOR LPAREN assignment SEMI expression SEMI assignment RPAREN statement
+Rule 31    switch_statement -> SWITCH LPAREN expression RPAREN LBRACE switch_cases default_case RBRACE
+Rule 32    switch_cases -> switch_cases CASE expression COLON statement
+Rule 33    switch_cases -> CASE expression COLON statement
+Rule 34    switch_cases -> empty
+Rule 35    default_case -> DEFAULT COLON statement
+Rule 36    default_case -> empty
+Rule 37    match_statement -> MATCH LPAREN expression RPAREN LBRACE match_cases RBRACE
+Rule 38    match_cases -> match_cases CASE expression COLON statement
+Rule 39    match_cases -> CASE expression COLON statement
+Rule 40    match_cases -> empty
+Rule 41    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ADD                  : 9
+AND                  : 20
+ASSIGN               : 8
+BOOLEAN              : 
+BREAK                : 
+CASE                 : 32 33 38 39
+DECREMENT            : 
+DEFAULT              : 35
+DIV                  : 12
+ELSE                 : 28
+EQ                   : 14
+EXP                  : 13
+FLOAT                : 25
+FOR                  : 30
+GT                   : 18
+GTE                  : 19
+ID                   : 8 26
+IF                   : 27 28
+INCREMENT            : 
+INT                  : 24
+LPAREN               : 23 27 28 29 30 31 37
+LT                   : 16
+LTE                  : 17
+MATCH                : 37
+MUL                  : 11
+NEQ                  : 15
+OR                   : 21
+RPAREN               : 23 27 28 29 30 31 37
+SUB                  : 10 22
+SWITCH               : 31
+WHILE                : 29
+error                : 
+
+Nonterminals, with rules where they appear
+
+COLON                : 32 33 35 38 39
+LBRACE               : 31 37
+RBRACE               : 31 37
+SEMI                 : 30 30
+assignment           : 2 30 30
+default_case         : 31
+empty                : 34 36 40
+expression           : 1 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 23 27 28 29 30 31 32 33 37 38 39
+for_loop             : 5
+if_statement         : 3
+match_cases          : 37 38
+match_statement      : 7
+statement            : 27 28 28 29 30 32 33 35 38 39 0
+switch_cases         : 31 32
+switch_statement     : 6
+while_loop           : 4
+
