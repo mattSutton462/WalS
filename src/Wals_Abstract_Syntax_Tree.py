@@ -1,3 +1,4 @@
+import json
 import ply.lex as lex
 import ply.yacc as yacc
 
@@ -16,6 +17,9 @@ tokens = [
 
 # Dictionary to store variables
 variables = {}
+
+# Global variable to store the AST
+parsed_ast = {}
 
 # Token regular expressions
 t_PLUS = r'\+'
@@ -89,9 +93,9 @@ def p_statement_expr(p):
     '''statement : expression
                  | PRINT LPAREN expression RPAREN'''
     if len(p) == 2:
-        print(p[1])
+        p[0] = p[1]
     else:
-        print(p[3])
+        p[0] = {"PRINT": p[3]}
 
 def p_expression_binop(p):
     '''expression : expression PLUS expression
@@ -99,20 +103,11 @@ def p_expression_binop(p):
                   | expression TIMES expression
                   | expression DIVIDE expression
                   | expression POWER expression'''
-    if p[2] == '+':
-        p[0] = p[1] + p[3]
-    elif p[2] == '-':
-        p[0] = p[1] - p[3]
-    elif p[2] == '*':
-        p[0] = p[1] * p[3]
-    elif p[2] == '/':
-        p[0] = p[1] / p[3]
-    elif p[2] == '^':
-        p[0] = p[1] ** p[3]
+    p[0] = {p[2]: [p[1], p[3]]}
 
 def p_expression_unary_minus(p):
     'expression : MINUS expression %prec UMINUS'
-    p[0] = -p[2]
+    p[0] = {"UMINUS": p[2]}
 
 def p_expression_group(p):
     'expression : LPAREN expression RPAREN'
@@ -124,29 +119,16 @@ def p_expression_number(p):
 
 def p_expression_id(p):
     'expression : ID'
-    # Handle variable lookup here
-    p[0] = variables.get(p[1], 0)  # Return 0 if variable is not found
+    p[0] = p[1]
 
 def p_expression_assignment(p):
     'expression : ID ASSIGN expression'
-    variables[p[1]] = p[3]  # Assign value to variable
-    p[0] = p[3]  # Return the assigned value
+    p[0] = {"ASSIGN": [p[1], p[3]]}
 
 def p_expression_increment_decrement(p):
     '''expression : ID INCREMENT
                   | ID DECREMENT'''
-    if p[2] == '++':
-        if p[1] in variables:
-            variables[p[1]] += 1
-            p[0] = variables[p[1]]
-        else:
-            print(f"Variable '{p[1]}' not found!")
-    elif p[2] == '--':
-        if p[1] in variables:
-            variables[p[1]] -= 1
-            p[0] = variables[p[1]]
-        else:
-            print(f"Variable '{p[1]}' not found!")
+    p[0] = {p[2]: p[1]}
 
 # Error rule for syntax errors
 def p_error(p):
@@ -165,9 +147,9 @@ while True:
     # Tokenize input
     lexer.input(text)
 
-    # # Print all tokens
-    # for token in lexer:
-    #     print(token)
-
-    # Evaluate and print result
-    parser.parse(text) 
+    # Parse input
+    parsed_ast = parser.parse(text)
+    
+    # Serialize AST to JSON
+    serialized_ast = json.dumps(parsed_ast)
+    print("Serialized AST:", serialized_ast)
