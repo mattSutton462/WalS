@@ -51,8 +51,10 @@ def t_NUMBER(t):
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    if t.value == 'print':
+    if t.value == 'print':                          # Recognize print as PRINT token type
         t.type = 'PRINT'
+    elif t.value == 'true' or t.value == 'false':   # Recognize true|false as BOOLEAN token type
+        t.type = 'BOOLEAN'
     return t
 
 # Ignored characters
