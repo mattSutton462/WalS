@@ -3,7 +3,7 @@ import ply.yacc as yacc
 
 # Token declaration
 tokens = [
-    'ID', 'NUMBER',
+    'ID', 'NUMBER', 'BOOLEAN',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER',
     'LPAREN', 'RPAREN',
     'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE', # Comparison operators
@@ -42,6 +42,7 @@ t_INCREMENT = r'\+\+'
 t_DECREMENT = r'--'
 t_ASSIGN = r'='
 t_PRINT = r'print' 
+t_BOOLEAN = r'true|false'
 
 def t_NUMBER(t):
     r'\d+'
@@ -50,6 +51,8 @@ def t_NUMBER(t):
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
+    if t.value == 'print':
+        t.type = 'PRINT'
     return t
 
 # Ignored characters
@@ -88,9 +91,9 @@ def p_statement_empty(p):
 def p_statement_expr(p):
     '''statement : expression
                  | PRINT LPAREN expression RPAREN'''
-    if len(p) == 2:
+    if len(p) == 2:  # If there's only one expression
         print(p[1])
-    else:
+    else:            # If there's a print statement with an expression
         print(p[3])
 
 def p_expression_binop(p):
@@ -98,7 +101,15 @@ def p_expression_binop(p):
                   | expression MINUS expression
                   | expression TIMES expression
                   | expression DIVIDE expression
-                  | expression POWER expression'''
+                  | expression POWER
+                  | expression EQ expression
+                  | expression NEQ expression
+                  | expression LT expression
+                  | expression LTE expression
+                  | expression GT expression
+                  | expression GTE expression
+                  | expression AND expression
+                  | expression OR expression'''
     if p[2] == '+':
         p[0] = p[1] + p[3]
     elif p[2] == '-':
@@ -109,6 +120,22 @@ def p_expression_binop(p):
         p[0] = p[1] / p[3]
     elif p[2] == '^':
         p[0] = p[1] ** p[3]
+    elif p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '<=':
+        p[0] = p[1] <= p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '>=':
+        p[0] = p[1] >= p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
 
 def p_expression_unary_minus(p):
     'expression : MINUS expression %prec UMINUS'
@@ -122,6 +149,13 @@ def p_expression_number(p):
     'expression : NUMBER'
     p[0] = p[1]
 
+def p_expression_boolean(p):
+    'expression : BOOLEAN'
+    if p[1] == 'true':
+        p[0] = True
+    else:
+        p[0] = False
+
 def p_expression_id(p):
     'expression : ID'
     # Handle variable lookup here
@@ -130,7 +164,7 @@ def p_expression_id(p):
 def p_expression_assignment(p):
     'expression : ID ASSIGN expression'
     variables[p[1]] = p[3]  # Assign value to variable
-    p[0] = p[3]  # Return the assigned value
+    p[0] = p[3]             # Return the assigned value
 
 def p_expression_increment_decrement(p):
     '''expression : ID INCREMENT
@@ -165,9 +199,9 @@ while True:
     # Tokenize input
     lexer.input(text)
 
-    # # Print all tokens
-    # for token in lexer:
-    #     print(token)
+    # Print all tokens
+    for token in lexer:
+        print(token)
 
     # Evaluate and print result
-    parser.parse(text) 
+    parser.parse(text)
