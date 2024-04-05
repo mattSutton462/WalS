@@ -179,6 +179,10 @@ def p_expression_boolean(p):
     else:
         p[0] = False
 
+def p_expression_not(p):
+    'expression : NOT expression'
+    p[0] = not p[2]
+
 def p_expression_id(p):
     'expression : ID'
     # Handle variable lookup here
@@ -218,7 +222,10 @@ def p_error(p):
     print("Syntax error in input!")
 
 # Build the parser
-parser = yacc.yacc()
+# parser = yacc.yacc()
+
+# Build the parser without writing tables to suppress warnings
+parser = yacc.yacc(write_tables=False)
 
 # Shell text and user input
 print("Start Cooking (type 'exit' to quit): ")
