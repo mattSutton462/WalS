@@ -11,69 +11,69 @@ Grammar
 
 Rule 0     S' -> statement
 Rule 1     statement -> <empty>
-Rule 2     expression -> expression PLUS expression
-Rule 3     expression -> expression MINUS expression
-Rule 4     expression -> expression TIMES expression
-Rule 5     expression -> expression DIVIDE expression
-Rule 6     expression -> expression POWER expression
-Rule 7     expression -> expression EQ expression
-Rule 8     expression -> expression NEQ expression
-Rule 9     expression -> expression LT expression
-Rule 10    expression -> expression LTE expression
-Rule 11    expression -> expression GT expression
-Rule 12    expression -> expression GTE expression
-Rule 13    expression -> expression AND expression
-Rule 14    expression -> expression OR expression
-Rule 15    expression -> MINUS expression
-Rule 16    expression -> LPAREN expression RPAREN
-Rule 17    expression -> NUMBER
-Rule 18    expression -> STRING
-Rule 19    expression -> ARRAY
-Rule 20    expression -> BOOLEAN
-Rule 21    expression -> NOT expression
-Rule 22    expression -> ID
-Rule 23    expression -> ID ASSIGN expression
-Rule 24    expression -> ID INCREMENT
-Rule 25    expression -> ID DECREMENT
-Rule 26    statement -> expression
-Rule 27    statement -> PRINT LPAREN expression RPAREN
+Rule 2     statement -> expression
+Rule 3     statement -> PRINT LPAREN expression RPAREN
+Rule 4     expression -> expression PLUS expression
+Rule 5     expression -> expression MINUS expression
+Rule 6     expression -> expression TIMES expression
+Rule 7     expression -> expression DIVIDE expression
+Rule 8     expression -> expression POWER expression
+Rule 9     expression -> expression EQ expression
+Rule 10    expression -> expression NEQ expression
+Rule 11    expression -> expression LT expression
+Rule 12    expression -> expression LTE expression
+Rule 13    expression -> expression GT expression
+Rule 14    expression -> expression GTE expression
+Rule 15    expression -> expression AND expression
+Rule 16    expression -> expression OR expression
+Rule 17    expression -> MINUS expression
+Rule 18    expression -> LPAREN expression RPAREN
+Rule 19    expression -> NUMBER
+Rule 20    expression -> STRING
+Rule 21    expression -> ARRAY
+Rule 22    expression -> BOOLEAN
+Rule 23    expression -> NOT expression
+Rule 24    expression -> ID
+Rule 25    expression -> ID ASSIGN expression
+Rule 26    expression -> ID INCREMENT
+Rule 27    expression -> ID DECREMENT
 
 Terminals, with rules where they appear
 
-AND                  : 13
-ARRAY                : 19
-ASSIGN               : 23
-BOOLEAN              : 20
-DECREMENT            : 25
-DIVIDE               : 5
+AND                  : 15
+ARRAY                : 21
+ASSIGN               : 25
+BOOLEAN              : 22
+DECREMENT            : 27
+DIVIDE               : 7
 ELSE                 : 
-EQ                   : 7
+EQ                   : 9
 FOR                  : 
-GT                   : 11
-GTE                  : 12
-ID                   : 22 23 24 25
+GT                   : 13
+GTE                  : 14
+ID                   : 24 25 26 27
 IF                   : 
-INCREMENT            : 24
-LPAREN               : 16 27
-LT                   : 9
-LTE                  : 10
-MINUS                : 3 15
-NEQ                  : 8
-NOT                  : 21
-NUMBER               : 17
-OR                   : 14
-PLUS                 : 2
-POWER                : 6
-PRINT                : 27
-RPAREN               : 16 27
-STRING               : 18
-TIMES                : 4
+INCREMENT            : 26
+LPAREN               : 3 18
+LT                   : 11
+LTE                  : 12
+MINUS                : 5 17
+NEQ                  : 10
+NOT                  : 23
+NUMBER               : 19
+OR                   : 16
+PLUS                 : 4
+POWER                : 8
+PRINT                : 3
+RPAREN               : 3 18
+STRING               : 20
+TIMES                : 6
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 16 21 23 26 27
+expression           : 2 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 18 23 25
 statement            : 0
 
 Parsing method: LALR
@@ -82,32 +82,32 @@ state 0
 
     (0) S' -> . statement
     (1) statement -> .
-    (26) statement -> . expression
-    (27) statement -> . PRINT LPAREN expression RPAREN
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (2) statement -> . expression
+    (3) statement -> . PRINT LPAREN expression RPAREN
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     $end            reduce using rule 1 (statement -> .)
     PRINT           shift and go to state 3
@@ -131,22 +131,22 @@ state 1
 
 state 2
 
-    (26) statement -> expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (2) statement -> expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    $end            reduce using rule 26 (statement -> expression .)
+    $end            reduce using rule 2 (statement -> expression .)
     PLUS            shift and go to state 12
     MINUS           shift and go to state 13
     TIMES           shift and go to state 14
@@ -164,38 +164,38 @@ state 2
 
 state 3
 
-    (27) statement -> PRINT . LPAREN expression RPAREN
+    (3) statement -> PRINT . LPAREN expression RPAREN
 
     LPAREN          shift and go to state 25
 
 
 state 4
 
-    (16) expression -> LPAREN . expression RPAREN
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (18) expression -> LPAREN . expression RPAREN
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -210,31 +210,31 @@ state 4
 
 state 5
 
-    (15) expression -> MINUS . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (17) expression -> MINUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -249,115 +249,115 @@ state 5
 
 state 6
 
-    (17) expression -> NUMBER .
+    (19) expression -> NUMBER .
 
-    PLUS            reduce using rule 17 (expression -> NUMBER .)
-    MINUS           reduce using rule 17 (expression -> NUMBER .)
-    TIMES           reduce using rule 17 (expression -> NUMBER .)
-    DIVIDE          reduce using rule 17 (expression -> NUMBER .)
-    POWER           reduce using rule 17 (expression -> NUMBER .)
-    EQ              reduce using rule 17 (expression -> NUMBER .)
-    NEQ             reduce using rule 17 (expression -> NUMBER .)
-    LT              reduce using rule 17 (expression -> NUMBER .)
-    LTE             reduce using rule 17 (expression -> NUMBER .)
-    GT              reduce using rule 17 (expression -> NUMBER .)
-    GTE             reduce using rule 17 (expression -> NUMBER .)
-    AND             reduce using rule 17 (expression -> NUMBER .)
-    OR              reduce using rule 17 (expression -> NUMBER .)
-    $end            reduce using rule 17 (expression -> NUMBER .)
-    RPAREN          reduce using rule 17 (expression -> NUMBER .)
+    PLUS            reduce using rule 19 (expression -> NUMBER .)
+    MINUS           reduce using rule 19 (expression -> NUMBER .)
+    TIMES           reduce using rule 19 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 19 (expression -> NUMBER .)
+    POWER           reduce using rule 19 (expression -> NUMBER .)
+    EQ              reduce using rule 19 (expression -> NUMBER .)
+    NEQ             reduce using rule 19 (expression -> NUMBER .)
+    LT              reduce using rule 19 (expression -> NUMBER .)
+    LTE             reduce using rule 19 (expression -> NUMBER .)
+    GT              reduce using rule 19 (expression -> NUMBER .)
+    GTE             reduce using rule 19 (expression -> NUMBER .)
+    AND             reduce using rule 19 (expression -> NUMBER .)
+    OR              reduce using rule 19 (expression -> NUMBER .)
+    $end            reduce using rule 19 (expression -> NUMBER .)
+    RPAREN          reduce using rule 19 (expression -> NUMBER .)
 
 
 state 7
 
-    (18) expression -> STRING .
+    (20) expression -> STRING .
 
-    PLUS            reduce using rule 18 (expression -> STRING .)
-    MINUS           reduce using rule 18 (expression -> STRING .)
-    TIMES           reduce using rule 18 (expression -> STRING .)
-    DIVIDE          reduce using rule 18 (expression -> STRING .)
-    POWER           reduce using rule 18 (expression -> STRING .)
-    EQ              reduce using rule 18 (expression -> STRING .)
-    NEQ             reduce using rule 18 (expression -> STRING .)
-    LT              reduce using rule 18 (expression -> STRING .)
-    LTE             reduce using rule 18 (expression -> STRING .)
-    GT              reduce using rule 18 (expression -> STRING .)
-    GTE             reduce using rule 18 (expression -> STRING .)
-    AND             reduce using rule 18 (expression -> STRING .)
-    OR              reduce using rule 18 (expression -> STRING .)
-    $end            reduce using rule 18 (expression -> STRING .)
-    RPAREN          reduce using rule 18 (expression -> STRING .)
+    PLUS            reduce using rule 20 (expression -> STRING .)
+    MINUS           reduce using rule 20 (expression -> STRING .)
+    TIMES           reduce using rule 20 (expression -> STRING .)
+    DIVIDE          reduce using rule 20 (expression -> STRING .)
+    POWER           reduce using rule 20 (expression -> STRING .)
+    EQ              reduce using rule 20 (expression -> STRING .)
+    NEQ             reduce using rule 20 (expression -> STRING .)
+    LT              reduce using rule 20 (expression -> STRING .)
+    LTE             reduce using rule 20 (expression -> STRING .)
+    GT              reduce using rule 20 (expression -> STRING .)
+    GTE             reduce using rule 20 (expression -> STRING .)
+    AND             reduce using rule 20 (expression -> STRING .)
+    OR              reduce using rule 20 (expression -> STRING .)
+    $end            reduce using rule 20 (expression -> STRING .)
+    RPAREN          reduce using rule 20 (expression -> STRING .)
 
 
 state 8
 
-    (19) expression -> ARRAY .
+    (21) expression -> ARRAY .
 
-    PLUS            reduce using rule 19 (expression -> ARRAY .)
-    MINUS           reduce using rule 19 (expression -> ARRAY .)
-    TIMES           reduce using rule 19 (expression -> ARRAY .)
-    DIVIDE          reduce using rule 19 (expression -> ARRAY .)
-    POWER           reduce using rule 19 (expression -> ARRAY .)
-    EQ              reduce using rule 19 (expression -> ARRAY .)
-    NEQ             reduce using rule 19 (expression -> ARRAY .)
-    LT              reduce using rule 19 (expression -> ARRAY .)
-    LTE             reduce using rule 19 (expression -> ARRAY .)
-    GT              reduce using rule 19 (expression -> ARRAY .)
-    GTE             reduce using rule 19 (expression -> ARRAY .)
-    AND             reduce using rule 19 (expression -> ARRAY .)
-    OR              reduce using rule 19 (expression -> ARRAY .)
-    $end            reduce using rule 19 (expression -> ARRAY .)
-    RPAREN          reduce using rule 19 (expression -> ARRAY .)
+    PLUS            reduce using rule 21 (expression -> ARRAY .)
+    MINUS           reduce using rule 21 (expression -> ARRAY .)
+    TIMES           reduce using rule 21 (expression -> ARRAY .)
+    DIVIDE          reduce using rule 21 (expression -> ARRAY .)
+    POWER           reduce using rule 21 (expression -> ARRAY .)
+    EQ              reduce using rule 21 (expression -> ARRAY .)
+    NEQ             reduce using rule 21 (expression -> ARRAY .)
+    LT              reduce using rule 21 (expression -> ARRAY .)
+    LTE             reduce using rule 21 (expression -> ARRAY .)
+    GT              reduce using rule 21 (expression -> ARRAY .)
+    GTE             reduce using rule 21 (expression -> ARRAY .)
+    AND             reduce using rule 21 (expression -> ARRAY .)
+    OR              reduce using rule 21 (expression -> ARRAY .)
+    $end            reduce using rule 21 (expression -> ARRAY .)
+    RPAREN          reduce using rule 21 (expression -> ARRAY .)
 
 
 state 9
 
-    (20) expression -> BOOLEAN .
+    (22) expression -> BOOLEAN .
 
-    PLUS            reduce using rule 20 (expression -> BOOLEAN .)
-    MINUS           reduce using rule 20 (expression -> BOOLEAN .)
-    TIMES           reduce using rule 20 (expression -> BOOLEAN .)
-    DIVIDE          reduce using rule 20 (expression -> BOOLEAN .)
-    POWER           reduce using rule 20 (expression -> BOOLEAN .)
-    EQ              reduce using rule 20 (expression -> BOOLEAN .)
-    NEQ             reduce using rule 20 (expression -> BOOLEAN .)
-    LT              reduce using rule 20 (expression -> BOOLEAN .)
-    LTE             reduce using rule 20 (expression -> BOOLEAN .)
-    GT              reduce using rule 20 (expression -> BOOLEAN .)
-    GTE             reduce using rule 20 (expression -> BOOLEAN .)
-    AND             reduce using rule 20 (expression -> BOOLEAN .)
-    OR              reduce using rule 20 (expression -> BOOLEAN .)
-    $end            reduce using rule 20 (expression -> BOOLEAN .)
-    RPAREN          reduce using rule 20 (expression -> BOOLEAN .)
+    PLUS            reduce using rule 22 (expression -> BOOLEAN .)
+    MINUS           reduce using rule 22 (expression -> BOOLEAN .)
+    TIMES           reduce using rule 22 (expression -> BOOLEAN .)
+    DIVIDE          reduce using rule 22 (expression -> BOOLEAN .)
+    POWER           reduce using rule 22 (expression -> BOOLEAN .)
+    EQ              reduce using rule 22 (expression -> BOOLEAN .)
+    NEQ             reduce using rule 22 (expression -> BOOLEAN .)
+    LT              reduce using rule 22 (expression -> BOOLEAN .)
+    LTE             reduce using rule 22 (expression -> BOOLEAN .)
+    GT              reduce using rule 22 (expression -> BOOLEAN .)
+    GTE             reduce using rule 22 (expression -> BOOLEAN .)
+    AND             reduce using rule 22 (expression -> BOOLEAN .)
+    OR              reduce using rule 22 (expression -> BOOLEAN .)
+    $end            reduce using rule 22 (expression -> BOOLEAN .)
+    RPAREN          reduce using rule 22 (expression -> BOOLEAN .)
 
 
 state 10
 
-    (21) expression -> NOT . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (23) expression -> NOT . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -372,26 +372,26 @@ state 10
 
 state 11
 
-    (22) expression -> ID .
-    (23) expression -> ID . ASSIGN expression
-    (24) expression -> ID . INCREMENT
-    (25) expression -> ID . DECREMENT
+    (24) expression -> ID .
+    (25) expression -> ID . ASSIGN expression
+    (26) expression -> ID . INCREMENT
+    (27) expression -> ID . DECREMENT
 
-    PLUS            reduce using rule 22 (expression -> ID .)
-    MINUS           reduce using rule 22 (expression -> ID .)
-    TIMES           reduce using rule 22 (expression -> ID .)
-    DIVIDE          reduce using rule 22 (expression -> ID .)
-    POWER           reduce using rule 22 (expression -> ID .)
-    EQ              reduce using rule 22 (expression -> ID .)
-    NEQ             reduce using rule 22 (expression -> ID .)
-    LT              reduce using rule 22 (expression -> ID .)
-    LTE             reduce using rule 22 (expression -> ID .)
-    GT              reduce using rule 22 (expression -> ID .)
-    GTE             reduce using rule 22 (expression -> ID .)
-    AND             reduce using rule 22 (expression -> ID .)
-    OR              reduce using rule 22 (expression -> ID .)
-    $end            reduce using rule 22 (expression -> ID .)
-    RPAREN          reduce using rule 22 (expression -> ID .)
+    PLUS            reduce using rule 24 (expression -> ID .)
+    MINUS           reduce using rule 24 (expression -> ID .)
+    TIMES           reduce using rule 24 (expression -> ID .)
+    DIVIDE          reduce using rule 24 (expression -> ID .)
+    POWER           reduce using rule 24 (expression -> ID .)
+    EQ              reduce using rule 24 (expression -> ID .)
+    NEQ             reduce using rule 24 (expression -> ID .)
+    LT              reduce using rule 24 (expression -> ID .)
+    LTE             reduce using rule 24 (expression -> ID .)
+    GT              reduce using rule 24 (expression -> ID .)
+    GTE             reduce using rule 24 (expression -> ID .)
+    AND             reduce using rule 24 (expression -> ID .)
+    OR              reduce using rule 24 (expression -> ID .)
+    $end            reduce using rule 24 (expression -> ID .)
+    RPAREN          reduce using rule 24 (expression -> ID .)
     ASSIGN          shift and go to state 29
     INCREMENT       shift and go to state 30
     DECREMENT       shift and go to state 31
@@ -399,31 +399,31 @@ state 11
 
 state 12
 
-    (2) expression -> expression PLUS . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (4) expression -> expression PLUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -438,31 +438,31 @@ state 12
 
 state 13
 
-    (3) expression -> expression MINUS . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (5) expression -> expression MINUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -477,31 +477,31 @@ state 13
 
 state 14
 
-    (4) expression -> expression TIMES . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (6) expression -> expression TIMES . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -516,31 +516,31 @@ state 14
 
 state 15
 
-    (5) expression -> expression DIVIDE . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (7) expression -> expression DIVIDE . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -555,31 +555,31 @@ state 15
 
 state 16
 
-    (6) expression -> expression POWER . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (8) expression -> expression POWER . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -594,31 +594,31 @@ state 16
 
 state 17
 
-    (7) expression -> expression EQ . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (9) expression -> expression EQ . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -633,31 +633,31 @@ state 17
 
 state 18
 
-    (8) expression -> expression NEQ . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (10) expression -> expression NEQ . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -672,31 +672,31 @@ state 18
 
 state 19
 
-    (9) expression -> expression LT . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (11) expression -> expression LT . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -711,31 +711,31 @@ state 19
 
 state 20
 
-    (10) expression -> expression LTE . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (12) expression -> expression LTE . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -750,31 +750,31 @@ state 20
 
 state 21
 
-    (11) expression -> expression GT . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (13) expression -> expression GT . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -789,31 +789,31 @@ state 21
 
 state 22
 
-    (12) expression -> expression GTE . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (14) expression -> expression GTE . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -828,31 +828,31 @@ state 22
 
 state 23
 
-    (13) expression -> expression AND . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (15) expression -> expression AND . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -867,31 +867,31 @@ state 23
 
 state 24
 
-    (14) expression -> expression OR . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (16) expression -> expression OR . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -906,31 +906,31 @@ state 24
 
 state 25
 
-    (27) statement -> PRINT LPAREN . expression RPAREN
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (3) statement -> PRINT LPAREN . expression RPAREN
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -945,20 +945,20 @@ state 25
 
 state 26
 
-    (16) expression -> LPAREN expression . RPAREN
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (18) expression -> LPAREN expression . RPAREN
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
     RPAREN          shift and go to state 46
     PLUS            shift and go to state 12
@@ -978,27 +978,27 @@ state 26
 
 state 27
 
-    (15) expression -> MINUS expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (17) expression -> MINUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 15 (expression -> MINUS expression .)
-    MINUS           reduce using rule 15 (expression -> MINUS expression .)
-    TIMES           reduce using rule 15 (expression -> MINUS expression .)
-    DIVIDE          reduce using rule 15 (expression -> MINUS expression .)
-    $end            reduce using rule 15 (expression -> MINUS expression .)
-    RPAREN          reduce using rule 15 (expression -> MINUS expression .)
+    PLUS            reduce using rule 17 (expression -> MINUS expression .)
+    MINUS           reduce using rule 17 (expression -> MINUS expression .)
+    TIMES           reduce using rule 17 (expression -> MINUS expression .)
+    DIVIDE          reduce using rule 17 (expression -> MINUS expression .)
+    $end            reduce using rule 17 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 17 (expression -> MINUS expression .)
     POWER           shift and go to state 16
     EQ              shift and go to state 17
     NEQ             shift and go to state 18
@@ -1009,15 +1009,15 @@ state 27
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! POWER           [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! EQ              [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! NEQ             [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! LT              [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! LTE             [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! GT              [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! GTE             [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! AND             [ reduce using rule 15 (expression -> MINUS expression .) ]
-  ! OR              [ reduce using rule 15 (expression -> MINUS expression .) ]
+  ! POWER           [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! EQ              [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! NEQ             [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! LT              [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! LTE             [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! GT              [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! GTE             [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! AND             [ reduce using rule 17 (expression -> MINUS expression .) ]
+  ! OR              [ reduce using rule 17 (expression -> MINUS expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1026,36 +1026,36 @@ state 27
 
 state 28
 
-    (21) expression -> NOT expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (23) expression -> NOT expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 21 (expression -> NOT expression .)
-    MINUS           reduce using rule 21 (expression -> NOT expression .)
-    TIMES           reduce using rule 21 (expression -> NOT expression .)
-    DIVIDE          reduce using rule 21 (expression -> NOT expression .)
-    POWER           reduce using rule 21 (expression -> NOT expression .)
-    EQ              reduce using rule 21 (expression -> NOT expression .)
-    NEQ             reduce using rule 21 (expression -> NOT expression .)
-    LT              reduce using rule 21 (expression -> NOT expression .)
-    LTE             reduce using rule 21 (expression -> NOT expression .)
-    GT              reduce using rule 21 (expression -> NOT expression .)
-    GTE             reduce using rule 21 (expression -> NOT expression .)
-    AND             reduce using rule 21 (expression -> NOT expression .)
-    OR              reduce using rule 21 (expression -> NOT expression .)
-    $end            reduce using rule 21 (expression -> NOT expression .)
-    RPAREN          reduce using rule 21 (expression -> NOT expression .)
+    PLUS            reduce using rule 23 (expression -> NOT expression .)
+    MINUS           reduce using rule 23 (expression -> NOT expression .)
+    TIMES           reduce using rule 23 (expression -> NOT expression .)
+    DIVIDE          reduce using rule 23 (expression -> NOT expression .)
+    POWER           reduce using rule 23 (expression -> NOT expression .)
+    EQ              reduce using rule 23 (expression -> NOT expression .)
+    NEQ             reduce using rule 23 (expression -> NOT expression .)
+    LT              reduce using rule 23 (expression -> NOT expression .)
+    LTE             reduce using rule 23 (expression -> NOT expression .)
+    GT              reduce using rule 23 (expression -> NOT expression .)
+    GTE             reduce using rule 23 (expression -> NOT expression .)
+    AND             reduce using rule 23 (expression -> NOT expression .)
+    OR              reduce using rule 23 (expression -> NOT expression .)
+    $end            reduce using rule 23 (expression -> NOT expression .)
+    RPAREN          reduce using rule 23 (expression -> NOT expression .)
 
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
@@ -1074,31 +1074,31 @@ state 28
 
 state 29
 
-    (23) expression -> ID ASSIGN . expression
-    (2) expression -> . expression PLUS expression
-    (3) expression -> . expression MINUS expression
-    (4) expression -> . expression TIMES expression
-    (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER expression
-    (7) expression -> . expression EQ expression
-    (8) expression -> . expression NEQ expression
-    (9) expression -> . expression LT expression
-    (10) expression -> . expression LTE expression
-    (11) expression -> . expression GT expression
-    (12) expression -> . expression GTE expression
-    (13) expression -> . expression AND expression
-    (14) expression -> . expression OR expression
-    (15) expression -> . MINUS expression
-    (16) expression -> . LPAREN expression RPAREN
-    (17) expression -> . NUMBER
-    (18) expression -> . STRING
-    (19) expression -> . ARRAY
-    (20) expression -> . BOOLEAN
-    (21) expression -> . NOT expression
-    (22) expression -> . ID
-    (23) expression -> . ID ASSIGN expression
-    (24) expression -> . ID INCREMENT
-    (25) expression -> . ID DECREMENT
+    (25) expression -> ID ASSIGN . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . expression POWER expression
+    (9) expression -> . expression EQ expression
+    (10) expression -> . expression NEQ expression
+    (11) expression -> . expression LT expression
+    (12) expression -> . expression LTE expression
+    (13) expression -> . expression GT expression
+    (14) expression -> . expression GTE expression
+    (15) expression -> . expression AND expression
+    (16) expression -> . expression OR expression
+    (17) expression -> . MINUS expression
+    (18) expression -> . LPAREN expression RPAREN
+    (19) expression -> . NUMBER
+    (20) expression -> . STRING
+    (21) expression -> . ARRAY
+    (22) expression -> . BOOLEAN
+    (23) expression -> . NOT expression
+    (24) expression -> . ID
+    (25) expression -> . ID ASSIGN expression
+    (26) expression -> . ID INCREMENT
+    (27) expression -> . ID DECREMENT
 
     MINUS           shift and go to state 5
     LPAREN          shift and go to state 4
@@ -1113,67 +1113,67 @@ state 29
 
 state 30
 
-    (24) expression -> ID INCREMENT .
+    (26) expression -> ID INCREMENT .
 
-    PLUS            reduce using rule 24 (expression -> ID INCREMENT .)
-    MINUS           reduce using rule 24 (expression -> ID INCREMENT .)
-    TIMES           reduce using rule 24 (expression -> ID INCREMENT .)
-    DIVIDE          reduce using rule 24 (expression -> ID INCREMENT .)
-    POWER           reduce using rule 24 (expression -> ID INCREMENT .)
-    EQ              reduce using rule 24 (expression -> ID INCREMENT .)
-    NEQ             reduce using rule 24 (expression -> ID INCREMENT .)
-    LT              reduce using rule 24 (expression -> ID INCREMENT .)
-    LTE             reduce using rule 24 (expression -> ID INCREMENT .)
-    GT              reduce using rule 24 (expression -> ID INCREMENT .)
-    GTE             reduce using rule 24 (expression -> ID INCREMENT .)
-    AND             reduce using rule 24 (expression -> ID INCREMENT .)
-    OR              reduce using rule 24 (expression -> ID INCREMENT .)
-    $end            reduce using rule 24 (expression -> ID INCREMENT .)
-    RPAREN          reduce using rule 24 (expression -> ID INCREMENT .)
+    PLUS            reduce using rule 26 (expression -> ID INCREMENT .)
+    MINUS           reduce using rule 26 (expression -> ID INCREMENT .)
+    TIMES           reduce using rule 26 (expression -> ID INCREMENT .)
+    DIVIDE          reduce using rule 26 (expression -> ID INCREMENT .)
+    POWER           reduce using rule 26 (expression -> ID INCREMENT .)
+    EQ              reduce using rule 26 (expression -> ID INCREMENT .)
+    NEQ             reduce using rule 26 (expression -> ID INCREMENT .)
+    LT              reduce using rule 26 (expression -> ID INCREMENT .)
+    LTE             reduce using rule 26 (expression -> ID INCREMENT .)
+    GT              reduce using rule 26 (expression -> ID INCREMENT .)
+    GTE             reduce using rule 26 (expression -> ID INCREMENT .)
+    AND             reduce using rule 26 (expression -> ID INCREMENT .)
+    OR              reduce using rule 26 (expression -> ID INCREMENT .)
+    $end            reduce using rule 26 (expression -> ID INCREMENT .)
+    RPAREN          reduce using rule 26 (expression -> ID INCREMENT .)
 
 
 state 31
 
-    (25) expression -> ID DECREMENT .
+    (27) expression -> ID DECREMENT .
 
-    PLUS            reduce using rule 25 (expression -> ID DECREMENT .)
-    MINUS           reduce using rule 25 (expression -> ID DECREMENT .)
-    TIMES           reduce using rule 25 (expression -> ID DECREMENT .)
-    DIVIDE          reduce using rule 25 (expression -> ID DECREMENT .)
-    POWER           reduce using rule 25 (expression -> ID DECREMENT .)
-    EQ              reduce using rule 25 (expression -> ID DECREMENT .)
-    NEQ             reduce using rule 25 (expression -> ID DECREMENT .)
-    LT              reduce using rule 25 (expression -> ID DECREMENT .)
-    LTE             reduce using rule 25 (expression -> ID DECREMENT .)
-    GT              reduce using rule 25 (expression -> ID DECREMENT .)
-    GTE             reduce using rule 25 (expression -> ID DECREMENT .)
-    AND             reduce using rule 25 (expression -> ID DECREMENT .)
-    OR              reduce using rule 25 (expression -> ID DECREMENT .)
-    $end            reduce using rule 25 (expression -> ID DECREMENT .)
-    RPAREN          reduce using rule 25 (expression -> ID DECREMENT .)
+    PLUS            reduce using rule 27 (expression -> ID DECREMENT .)
+    MINUS           reduce using rule 27 (expression -> ID DECREMENT .)
+    TIMES           reduce using rule 27 (expression -> ID DECREMENT .)
+    DIVIDE          reduce using rule 27 (expression -> ID DECREMENT .)
+    POWER           reduce using rule 27 (expression -> ID DECREMENT .)
+    EQ              reduce using rule 27 (expression -> ID DECREMENT .)
+    NEQ             reduce using rule 27 (expression -> ID DECREMENT .)
+    LT              reduce using rule 27 (expression -> ID DECREMENT .)
+    LTE             reduce using rule 27 (expression -> ID DECREMENT .)
+    GT              reduce using rule 27 (expression -> ID DECREMENT .)
+    GTE             reduce using rule 27 (expression -> ID DECREMENT .)
+    AND             reduce using rule 27 (expression -> ID DECREMENT .)
+    OR              reduce using rule 27 (expression -> ID DECREMENT .)
+    $end            reduce using rule 27 (expression -> ID DECREMENT .)
+    RPAREN          reduce using rule 27 (expression -> ID DECREMENT .)
 
 
 state 32
 
-    (2) expression -> expression PLUS expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (4) expression -> expression PLUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 2 (expression -> expression PLUS expression .)
-    MINUS           reduce using rule 2 (expression -> expression PLUS expression .)
-    $end            reduce using rule 2 (expression -> expression PLUS expression .)
-    RPAREN          reduce using rule 2 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 4 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 4 (expression -> expression PLUS expression .)
+    $end            reduce using rule 4 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 4 (expression -> expression PLUS expression .)
     TIMES           shift and go to state 14
     DIVIDE          shift and go to state 15
     POWER           shift and go to state 16
@@ -1186,42 +1186,42 @@ state 32
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! TIMES           [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! DIVIDE          [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! POWER           [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! EQ              [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! NEQ             [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! LT              [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! LTE             [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! GT              [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! GTE             [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! AND             [ reduce using rule 2 (expression -> expression PLUS expression .) ]
-  ! OR              [ reduce using rule 2 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! POWER           [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! EQ              [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! NEQ             [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! LT              [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! LTE             [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! GT              [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! GTE             [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! AND             [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! OR              [ reduce using rule 4 (expression -> expression PLUS expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
 
 
 state 33
 
-    (3) expression -> expression MINUS expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (5) expression -> expression MINUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 3 (expression -> expression MINUS expression .)
-    MINUS           reduce using rule 3 (expression -> expression MINUS expression .)
-    $end            reduce using rule 3 (expression -> expression MINUS expression .)
-    RPAREN          reduce using rule 3 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 5 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 5 (expression -> expression MINUS expression .)
+    $end            reduce using rule 5 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 5 (expression -> expression MINUS expression .)
     TIMES           shift and go to state 14
     DIVIDE          shift and go to state 15
     POWER           shift and go to state 16
@@ -1234,44 +1234,44 @@ state 33
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! TIMES           [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! POWER           [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! EQ              [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! NEQ             [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! LT              [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! LTE             [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! GT              [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! GTE             [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! AND             [ reduce using rule 3 (expression -> expression MINUS expression .) ]
-  ! OR              [ reduce using rule 3 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! POWER           [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! EQ              [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! NEQ             [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! LT              [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! LTE             [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! GT              [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! GTE             [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! AND             [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! OR              [ reduce using rule 5 (expression -> expression MINUS expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
 
 
 state 34
 
-    (4) expression -> expression TIMES expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (6) expression -> expression TIMES expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 4 (expression -> expression TIMES expression .)
-    MINUS           reduce using rule 4 (expression -> expression TIMES expression .)
-    TIMES           reduce using rule 4 (expression -> expression TIMES expression .)
-    DIVIDE          reduce using rule 4 (expression -> expression TIMES expression .)
-    $end            reduce using rule 4 (expression -> expression TIMES expression .)
-    RPAREN          reduce using rule 4 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 6 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 6 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 6 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 6 (expression -> expression TIMES expression .)
+    $end            reduce using rule 6 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 6 (expression -> expression TIMES expression .)
     POWER           shift and go to state 16
     EQ              shift and go to state 17
     NEQ             shift and go to state 18
@@ -1282,15 +1282,15 @@ state 34
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! POWER           [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! EQ              [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! NEQ             [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! LT              [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! LTE             [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! GT              [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! GTE             [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! AND             [ reduce using rule 4 (expression -> expression TIMES expression .) ]
-  ! OR              [ reduce using rule 4 (expression -> expression TIMES expression .) ]
+  ! POWER           [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! EQ              [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! NEQ             [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! LT              [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! LTE             [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! GT              [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! GTE             [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! AND             [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! OR              [ reduce using rule 6 (expression -> expression TIMES expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1299,27 +1299,27 @@ state 34
 
 state 35
 
-    (5) expression -> expression DIVIDE expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (7) expression -> expression DIVIDE expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 5 (expression -> expression DIVIDE expression .)
-    MINUS           reduce using rule 5 (expression -> expression DIVIDE expression .)
-    TIMES           reduce using rule 5 (expression -> expression DIVIDE expression .)
-    DIVIDE          reduce using rule 5 (expression -> expression DIVIDE expression .)
-    $end            reduce using rule 5 (expression -> expression DIVIDE expression .)
-    RPAREN          reduce using rule 5 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 7 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 7 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 7 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 7 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 7 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 7 (expression -> expression DIVIDE expression .)
     POWER           shift and go to state 16
     EQ              shift and go to state 17
     NEQ             shift and go to state 18
@@ -1330,15 +1330,15 @@ state 35
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! POWER           [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! EQ              [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! NEQ             [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! LT              [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! LTE             [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! GT              [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! GTE             [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! AND             [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
-  ! OR              [ reduce using rule 5 (expression -> expression DIVIDE expression .) ]
+  ! POWER           [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! EQ              [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! NEQ             [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! LT              [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! LTE             [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! GT              [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! GTE             [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! AND             [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! OR              [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1347,27 +1347,27 @@ state 35
 
 state 36
 
-    (6) expression -> expression POWER expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (8) expression -> expression POWER expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 6 (expression -> expression POWER expression .)
-    MINUS           reduce using rule 6 (expression -> expression POWER expression .)
-    TIMES           reduce using rule 6 (expression -> expression POWER expression .)
-    DIVIDE          reduce using rule 6 (expression -> expression POWER expression .)
-    $end            reduce using rule 6 (expression -> expression POWER expression .)
-    RPAREN          reduce using rule 6 (expression -> expression POWER expression .)
+    PLUS            reduce using rule 8 (expression -> expression POWER expression .)
+    MINUS           reduce using rule 8 (expression -> expression POWER expression .)
+    TIMES           reduce using rule 8 (expression -> expression POWER expression .)
+    DIVIDE          reduce using rule 8 (expression -> expression POWER expression .)
+    $end            reduce using rule 8 (expression -> expression POWER expression .)
+    RPAREN          reduce using rule 8 (expression -> expression POWER expression .)
     POWER           shift and go to state 16
     EQ              shift and go to state 17
     NEQ             shift and go to state 18
@@ -1378,15 +1378,15 @@ state 36
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! POWER           [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! EQ              [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! NEQ             [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! LT              [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! LTE             [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! GT              [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! GTE             [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! AND             [ reduce using rule 6 (expression -> expression POWER expression .) ]
-  ! OR              [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! POWER           [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! EQ              [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! NEQ             [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! LT              [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! LTE             [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! GT              [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! GTE             [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! AND             [ reduce using rule 8 (expression -> expression POWER expression .) ]
+  ! OR              [ reduce using rule 8 (expression -> expression POWER expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1395,39 +1395,39 @@ state 36
 
 state 37
 
-    (7) expression -> expression EQ expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (9) expression -> expression EQ expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 7 (expression -> expression EQ expression .)
-    MINUS           reduce using rule 7 (expression -> expression EQ expression .)
-    TIMES           reduce using rule 7 (expression -> expression EQ expression .)
-    DIVIDE          reduce using rule 7 (expression -> expression EQ expression .)
-    POWER           reduce using rule 7 (expression -> expression EQ expression .)
-    EQ              reduce using rule 7 (expression -> expression EQ expression .)
-    NEQ             reduce using rule 7 (expression -> expression EQ expression .)
-    LT              reduce using rule 7 (expression -> expression EQ expression .)
-    LTE             reduce using rule 7 (expression -> expression EQ expression .)
-    GT              reduce using rule 7 (expression -> expression EQ expression .)
-    GTE             reduce using rule 7 (expression -> expression EQ expression .)
-    $end            reduce using rule 7 (expression -> expression EQ expression .)
-    RPAREN          reduce using rule 7 (expression -> expression EQ expression .)
+    PLUS            reduce using rule 9 (expression -> expression EQ expression .)
+    MINUS           reduce using rule 9 (expression -> expression EQ expression .)
+    TIMES           reduce using rule 9 (expression -> expression EQ expression .)
+    DIVIDE          reduce using rule 9 (expression -> expression EQ expression .)
+    POWER           reduce using rule 9 (expression -> expression EQ expression .)
+    EQ              reduce using rule 9 (expression -> expression EQ expression .)
+    NEQ             reduce using rule 9 (expression -> expression EQ expression .)
+    LT              reduce using rule 9 (expression -> expression EQ expression .)
+    LTE             reduce using rule 9 (expression -> expression EQ expression .)
+    GT              reduce using rule 9 (expression -> expression EQ expression .)
+    GTE             reduce using rule 9 (expression -> expression EQ expression .)
+    $end            reduce using rule 9 (expression -> expression EQ expression .)
+    RPAREN          reduce using rule 9 (expression -> expression EQ expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 7 (expression -> expression EQ expression .) ]
-  ! OR              [ reduce using rule 7 (expression -> expression EQ expression .) ]
+  ! AND             [ reduce using rule 9 (expression -> expression EQ expression .) ]
+  ! OR              [ reduce using rule 9 (expression -> expression EQ expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1443,39 +1443,39 @@ state 37
 
 state 38
 
-    (8) expression -> expression NEQ expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (10) expression -> expression NEQ expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 8 (expression -> expression NEQ expression .)
-    MINUS           reduce using rule 8 (expression -> expression NEQ expression .)
-    TIMES           reduce using rule 8 (expression -> expression NEQ expression .)
-    DIVIDE          reduce using rule 8 (expression -> expression NEQ expression .)
-    POWER           reduce using rule 8 (expression -> expression NEQ expression .)
-    EQ              reduce using rule 8 (expression -> expression NEQ expression .)
-    NEQ             reduce using rule 8 (expression -> expression NEQ expression .)
-    LT              reduce using rule 8 (expression -> expression NEQ expression .)
-    LTE             reduce using rule 8 (expression -> expression NEQ expression .)
-    GT              reduce using rule 8 (expression -> expression NEQ expression .)
-    GTE             reduce using rule 8 (expression -> expression NEQ expression .)
-    $end            reduce using rule 8 (expression -> expression NEQ expression .)
-    RPAREN          reduce using rule 8 (expression -> expression NEQ expression .)
+    PLUS            reduce using rule 10 (expression -> expression NEQ expression .)
+    MINUS           reduce using rule 10 (expression -> expression NEQ expression .)
+    TIMES           reduce using rule 10 (expression -> expression NEQ expression .)
+    DIVIDE          reduce using rule 10 (expression -> expression NEQ expression .)
+    POWER           reduce using rule 10 (expression -> expression NEQ expression .)
+    EQ              reduce using rule 10 (expression -> expression NEQ expression .)
+    NEQ             reduce using rule 10 (expression -> expression NEQ expression .)
+    LT              reduce using rule 10 (expression -> expression NEQ expression .)
+    LTE             reduce using rule 10 (expression -> expression NEQ expression .)
+    GT              reduce using rule 10 (expression -> expression NEQ expression .)
+    GTE             reduce using rule 10 (expression -> expression NEQ expression .)
+    $end            reduce using rule 10 (expression -> expression NEQ expression .)
+    RPAREN          reduce using rule 10 (expression -> expression NEQ expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 8 (expression -> expression NEQ expression .) ]
-  ! OR              [ reduce using rule 8 (expression -> expression NEQ expression .) ]
+  ! AND             [ reduce using rule 10 (expression -> expression NEQ expression .) ]
+  ! OR              [ reduce using rule 10 (expression -> expression NEQ expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1491,39 +1491,39 @@ state 38
 
 state 39
 
-    (9) expression -> expression LT expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (11) expression -> expression LT expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 9 (expression -> expression LT expression .)
-    MINUS           reduce using rule 9 (expression -> expression LT expression .)
-    TIMES           reduce using rule 9 (expression -> expression LT expression .)
-    DIVIDE          reduce using rule 9 (expression -> expression LT expression .)
-    POWER           reduce using rule 9 (expression -> expression LT expression .)
-    EQ              reduce using rule 9 (expression -> expression LT expression .)
-    NEQ             reduce using rule 9 (expression -> expression LT expression .)
-    LT              reduce using rule 9 (expression -> expression LT expression .)
-    LTE             reduce using rule 9 (expression -> expression LT expression .)
-    GT              reduce using rule 9 (expression -> expression LT expression .)
-    GTE             reduce using rule 9 (expression -> expression LT expression .)
-    $end            reduce using rule 9 (expression -> expression LT expression .)
-    RPAREN          reduce using rule 9 (expression -> expression LT expression .)
+    PLUS            reduce using rule 11 (expression -> expression LT expression .)
+    MINUS           reduce using rule 11 (expression -> expression LT expression .)
+    TIMES           reduce using rule 11 (expression -> expression LT expression .)
+    DIVIDE          reduce using rule 11 (expression -> expression LT expression .)
+    POWER           reduce using rule 11 (expression -> expression LT expression .)
+    EQ              reduce using rule 11 (expression -> expression LT expression .)
+    NEQ             reduce using rule 11 (expression -> expression LT expression .)
+    LT              reduce using rule 11 (expression -> expression LT expression .)
+    LTE             reduce using rule 11 (expression -> expression LT expression .)
+    GT              reduce using rule 11 (expression -> expression LT expression .)
+    GTE             reduce using rule 11 (expression -> expression LT expression .)
+    $end            reduce using rule 11 (expression -> expression LT expression .)
+    RPAREN          reduce using rule 11 (expression -> expression LT expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 9 (expression -> expression LT expression .) ]
-  ! OR              [ reduce using rule 9 (expression -> expression LT expression .) ]
+  ! AND             [ reduce using rule 11 (expression -> expression LT expression .) ]
+  ! OR              [ reduce using rule 11 (expression -> expression LT expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1539,39 +1539,39 @@ state 39
 
 state 40
 
-    (10) expression -> expression LTE expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (12) expression -> expression LTE expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 10 (expression -> expression LTE expression .)
-    MINUS           reduce using rule 10 (expression -> expression LTE expression .)
-    TIMES           reduce using rule 10 (expression -> expression LTE expression .)
-    DIVIDE          reduce using rule 10 (expression -> expression LTE expression .)
-    POWER           reduce using rule 10 (expression -> expression LTE expression .)
-    EQ              reduce using rule 10 (expression -> expression LTE expression .)
-    NEQ             reduce using rule 10 (expression -> expression LTE expression .)
-    LT              reduce using rule 10 (expression -> expression LTE expression .)
-    LTE             reduce using rule 10 (expression -> expression LTE expression .)
-    GT              reduce using rule 10 (expression -> expression LTE expression .)
-    GTE             reduce using rule 10 (expression -> expression LTE expression .)
-    $end            reduce using rule 10 (expression -> expression LTE expression .)
-    RPAREN          reduce using rule 10 (expression -> expression LTE expression .)
+    PLUS            reduce using rule 12 (expression -> expression LTE expression .)
+    MINUS           reduce using rule 12 (expression -> expression LTE expression .)
+    TIMES           reduce using rule 12 (expression -> expression LTE expression .)
+    DIVIDE          reduce using rule 12 (expression -> expression LTE expression .)
+    POWER           reduce using rule 12 (expression -> expression LTE expression .)
+    EQ              reduce using rule 12 (expression -> expression LTE expression .)
+    NEQ             reduce using rule 12 (expression -> expression LTE expression .)
+    LT              reduce using rule 12 (expression -> expression LTE expression .)
+    LTE             reduce using rule 12 (expression -> expression LTE expression .)
+    GT              reduce using rule 12 (expression -> expression LTE expression .)
+    GTE             reduce using rule 12 (expression -> expression LTE expression .)
+    $end            reduce using rule 12 (expression -> expression LTE expression .)
+    RPAREN          reduce using rule 12 (expression -> expression LTE expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 10 (expression -> expression LTE expression .) ]
-  ! OR              [ reduce using rule 10 (expression -> expression LTE expression .) ]
+  ! AND             [ reduce using rule 12 (expression -> expression LTE expression .) ]
+  ! OR              [ reduce using rule 12 (expression -> expression LTE expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1587,39 +1587,39 @@ state 40
 
 state 41
 
-    (11) expression -> expression GT expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (13) expression -> expression GT expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 11 (expression -> expression GT expression .)
-    MINUS           reduce using rule 11 (expression -> expression GT expression .)
-    TIMES           reduce using rule 11 (expression -> expression GT expression .)
-    DIVIDE          reduce using rule 11 (expression -> expression GT expression .)
-    POWER           reduce using rule 11 (expression -> expression GT expression .)
-    EQ              reduce using rule 11 (expression -> expression GT expression .)
-    NEQ             reduce using rule 11 (expression -> expression GT expression .)
-    LT              reduce using rule 11 (expression -> expression GT expression .)
-    LTE             reduce using rule 11 (expression -> expression GT expression .)
-    GT              reduce using rule 11 (expression -> expression GT expression .)
-    GTE             reduce using rule 11 (expression -> expression GT expression .)
-    $end            reduce using rule 11 (expression -> expression GT expression .)
-    RPAREN          reduce using rule 11 (expression -> expression GT expression .)
+    PLUS            reduce using rule 13 (expression -> expression GT expression .)
+    MINUS           reduce using rule 13 (expression -> expression GT expression .)
+    TIMES           reduce using rule 13 (expression -> expression GT expression .)
+    DIVIDE          reduce using rule 13 (expression -> expression GT expression .)
+    POWER           reduce using rule 13 (expression -> expression GT expression .)
+    EQ              reduce using rule 13 (expression -> expression GT expression .)
+    NEQ             reduce using rule 13 (expression -> expression GT expression .)
+    LT              reduce using rule 13 (expression -> expression GT expression .)
+    LTE             reduce using rule 13 (expression -> expression GT expression .)
+    GT              reduce using rule 13 (expression -> expression GT expression .)
+    GTE             reduce using rule 13 (expression -> expression GT expression .)
+    $end            reduce using rule 13 (expression -> expression GT expression .)
+    RPAREN          reduce using rule 13 (expression -> expression GT expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 11 (expression -> expression GT expression .) ]
-  ! OR              [ reduce using rule 11 (expression -> expression GT expression .) ]
+  ! AND             [ reduce using rule 13 (expression -> expression GT expression .) ]
+  ! OR              [ reduce using rule 13 (expression -> expression GT expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1635,39 +1635,39 @@ state 41
 
 state 42
 
-    (12) expression -> expression GTE expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (14) expression -> expression GTE expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 12 (expression -> expression GTE expression .)
-    MINUS           reduce using rule 12 (expression -> expression GTE expression .)
-    TIMES           reduce using rule 12 (expression -> expression GTE expression .)
-    DIVIDE          reduce using rule 12 (expression -> expression GTE expression .)
-    POWER           reduce using rule 12 (expression -> expression GTE expression .)
-    EQ              reduce using rule 12 (expression -> expression GTE expression .)
-    NEQ             reduce using rule 12 (expression -> expression GTE expression .)
-    LT              reduce using rule 12 (expression -> expression GTE expression .)
-    LTE             reduce using rule 12 (expression -> expression GTE expression .)
-    GT              reduce using rule 12 (expression -> expression GTE expression .)
-    GTE             reduce using rule 12 (expression -> expression GTE expression .)
-    $end            reduce using rule 12 (expression -> expression GTE expression .)
-    RPAREN          reduce using rule 12 (expression -> expression GTE expression .)
+    PLUS            reduce using rule 14 (expression -> expression GTE expression .)
+    MINUS           reduce using rule 14 (expression -> expression GTE expression .)
+    TIMES           reduce using rule 14 (expression -> expression GTE expression .)
+    DIVIDE          reduce using rule 14 (expression -> expression GTE expression .)
+    POWER           reduce using rule 14 (expression -> expression GTE expression .)
+    EQ              reduce using rule 14 (expression -> expression GTE expression .)
+    NEQ             reduce using rule 14 (expression -> expression GTE expression .)
+    LT              reduce using rule 14 (expression -> expression GTE expression .)
+    LTE             reduce using rule 14 (expression -> expression GTE expression .)
+    GT              reduce using rule 14 (expression -> expression GTE expression .)
+    GTE             reduce using rule 14 (expression -> expression GTE expression .)
+    $end            reduce using rule 14 (expression -> expression GTE expression .)
+    RPAREN          reduce using rule 14 (expression -> expression GTE expression .)
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! AND             [ reduce using rule 12 (expression -> expression GTE expression .) ]
-  ! OR              [ reduce using rule 12 (expression -> expression GTE expression .) ]
+  ! AND             [ reduce using rule 14 (expression -> expression GTE expression .) ]
+  ! OR              [ reduce using rule 14 (expression -> expression GTE expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1683,38 +1683,38 @@ state 42
 
 state 43
 
-    (13) expression -> expression AND expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (15) expression -> expression AND expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 13 (expression -> expression AND expression .)
-    MINUS           reduce using rule 13 (expression -> expression AND expression .)
-    TIMES           reduce using rule 13 (expression -> expression AND expression .)
-    DIVIDE          reduce using rule 13 (expression -> expression AND expression .)
-    POWER           reduce using rule 13 (expression -> expression AND expression .)
-    EQ              reduce using rule 13 (expression -> expression AND expression .)
-    NEQ             reduce using rule 13 (expression -> expression AND expression .)
-    LT              reduce using rule 13 (expression -> expression AND expression .)
-    LTE             reduce using rule 13 (expression -> expression AND expression .)
-    GT              reduce using rule 13 (expression -> expression AND expression .)
-    GTE             reduce using rule 13 (expression -> expression AND expression .)
-    AND             reduce using rule 13 (expression -> expression AND expression .)
-    $end            reduce using rule 13 (expression -> expression AND expression .)
-    RPAREN          reduce using rule 13 (expression -> expression AND expression .)
+    PLUS            reduce using rule 15 (expression -> expression AND expression .)
+    MINUS           reduce using rule 15 (expression -> expression AND expression .)
+    TIMES           reduce using rule 15 (expression -> expression AND expression .)
+    DIVIDE          reduce using rule 15 (expression -> expression AND expression .)
+    POWER           reduce using rule 15 (expression -> expression AND expression .)
+    EQ              reduce using rule 15 (expression -> expression AND expression .)
+    NEQ             reduce using rule 15 (expression -> expression AND expression .)
+    LT              reduce using rule 15 (expression -> expression AND expression .)
+    LTE             reduce using rule 15 (expression -> expression AND expression .)
+    GT              reduce using rule 15 (expression -> expression AND expression .)
+    GTE             reduce using rule 15 (expression -> expression AND expression .)
+    AND             reduce using rule 15 (expression -> expression AND expression .)
+    $end            reduce using rule 15 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 15 (expression -> expression AND expression .)
     OR              shift and go to state 24
 
-  ! OR              [ reduce using rule 13 (expression -> expression AND expression .) ]
+  ! OR              [ reduce using rule 15 (expression -> expression AND expression .) ]
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
   ! TIMES           [ shift and go to state 14 ]
@@ -1731,36 +1731,36 @@ state 43
 
 state 44
 
-    (14) expression -> expression OR expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (16) expression -> expression OR expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
-    PLUS            reduce using rule 14 (expression -> expression OR expression .)
-    MINUS           reduce using rule 14 (expression -> expression OR expression .)
-    TIMES           reduce using rule 14 (expression -> expression OR expression .)
-    DIVIDE          reduce using rule 14 (expression -> expression OR expression .)
-    POWER           reduce using rule 14 (expression -> expression OR expression .)
-    EQ              reduce using rule 14 (expression -> expression OR expression .)
-    NEQ             reduce using rule 14 (expression -> expression OR expression .)
-    LT              reduce using rule 14 (expression -> expression OR expression .)
-    LTE             reduce using rule 14 (expression -> expression OR expression .)
-    GT              reduce using rule 14 (expression -> expression OR expression .)
-    GTE             reduce using rule 14 (expression -> expression OR expression .)
-    AND             reduce using rule 14 (expression -> expression OR expression .)
-    OR              reduce using rule 14 (expression -> expression OR expression .)
-    $end            reduce using rule 14 (expression -> expression OR expression .)
-    RPAREN          reduce using rule 14 (expression -> expression OR expression .)
+    PLUS            reduce using rule 16 (expression -> expression OR expression .)
+    MINUS           reduce using rule 16 (expression -> expression OR expression .)
+    TIMES           reduce using rule 16 (expression -> expression OR expression .)
+    DIVIDE          reduce using rule 16 (expression -> expression OR expression .)
+    POWER           reduce using rule 16 (expression -> expression OR expression .)
+    EQ              reduce using rule 16 (expression -> expression OR expression .)
+    NEQ             reduce using rule 16 (expression -> expression OR expression .)
+    LT              reduce using rule 16 (expression -> expression OR expression .)
+    LTE             reduce using rule 16 (expression -> expression OR expression .)
+    GT              reduce using rule 16 (expression -> expression OR expression .)
+    GTE             reduce using rule 16 (expression -> expression OR expression .)
+    AND             reduce using rule 16 (expression -> expression OR expression .)
+    OR              reduce using rule 16 (expression -> expression OR expression .)
+    $end            reduce using rule 16 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 16 (expression -> expression OR expression .)
 
   ! PLUS            [ shift and go to state 12 ]
   ! MINUS           [ shift and go to state 13 ]
@@ -1779,20 +1779,20 @@ state 44
 
 state 45
 
-    (27) statement -> PRINT LPAREN expression . RPAREN
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (3) statement -> PRINT LPAREN expression . RPAREN
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
     RPAREN          shift and go to state 48
     PLUS            shift and go to state 12
@@ -1812,41 +1812,41 @@ state 45
 
 state 46
 
-    (16) expression -> LPAREN expression RPAREN .
+    (18) expression -> LPAREN expression RPAREN .
 
-    PLUS            reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    TIMES           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    POWER           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    EQ              reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    NEQ             reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    LT              reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    LTE             reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    GT              reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    GTE             reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    AND             reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    OR              reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    $end            reduce using rule 16 (expression -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    POWER           reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    NEQ             reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    LT              reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    GT              reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 18 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 18 (expression -> LPAREN expression RPAREN .)
 
 
 state 47
 
-    (23) expression -> ID ASSIGN expression .
-    (2) expression -> expression . PLUS expression
-    (3) expression -> expression . MINUS expression
-    (4) expression -> expression . TIMES expression
-    (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER expression
-    (7) expression -> expression . EQ expression
-    (8) expression -> expression . NEQ expression
-    (9) expression -> expression . LT expression
-    (10) expression -> expression . LTE expression
-    (11) expression -> expression . GT expression
-    (12) expression -> expression . GTE expression
-    (13) expression -> expression . AND expression
-    (14) expression -> expression . OR expression
+    (25) expression -> ID ASSIGN expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (8) expression -> expression . POWER expression
+    (9) expression -> expression . EQ expression
+    (10) expression -> expression . NEQ expression
+    (11) expression -> expression . LT expression
+    (12) expression -> expression . LTE expression
+    (13) expression -> expression . GT expression
+    (14) expression -> expression . GTE expression
+    (15) expression -> expression . AND expression
+    (16) expression -> expression . OR expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1861,8 +1861,8 @@ state 47
   ! shift/reduce conflict for GTE resolved as shift
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
-    $end            reduce using rule 23 (expression -> ID ASSIGN expression .)
-    RPAREN          reduce using rule 23 (expression -> ID ASSIGN expression .)
+    $end            reduce using rule 25 (expression -> ID ASSIGN expression .)
+    RPAREN          reduce using rule 25 (expression -> ID ASSIGN expression .)
     PLUS            shift and go to state 12
     MINUS           shift and go to state 13
     TIMES           shift and go to state 14
@@ -1877,26 +1877,26 @@ state 47
     AND             shift and go to state 23
     OR              shift and go to state 24
 
-  ! PLUS            [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! MINUS           [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! TIMES           [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! DIVIDE          [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! POWER           [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! EQ              [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! NEQ             [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! LT              [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! LTE             [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! GT              [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! GTE             [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! AND             [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
-  ! OR              [ reduce using rule 23 (expression -> ID ASSIGN expression .) ]
+  ! PLUS            [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! MINUS           [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! TIMES           [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! DIVIDE          [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! POWER           [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! EQ              [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! NEQ             [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! LT              [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! LTE             [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! GT              [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! GTE             [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! AND             [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
+  ! OR              [ reduce using rule 25 (expression -> ID ASSIGN expression .) ]
 
 
 state 48
 
-    (27) statement -> PRINT LPAREN expression RPAREN .
+    (3) statement -> PRINT LPAREN expression RPAREN .
 
-    $end            reduce using rule 27 (statement -> PRINT LPAREN expression RPAREN .)
+    $end            reduce using rule 3 (statement -> PRINT LPAREN expression RPAREN .)
 
 WARNING: 
 WARNING: Conflicts:

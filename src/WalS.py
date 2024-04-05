@@ -209,14 +209,6 @@ def p_expression_increment_decrement(p):
         else:
             print(f"Variable '{p[1]}' not found!")
 
-def p_statement_expr(p):
-    '''statement : expression
-                 | PRINT LPAREN expression RPAREN'''
-    if len(p) == 2:  # If there's only one expression
-        print(p[1])
-    else:            # If there's a print statement with an expression
-        print(p[3])
-
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
@@ -224,7 +216,6 @@ def p_error(p):
 # Build the parser
 # parser = yacc.yacc()
 
-# Build the parser without writing tables to suppress warnings
 parser = yacc.yacc(write_tables=False)
 
 # Shell text and user input

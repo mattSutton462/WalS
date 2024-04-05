@@ -134,8 +134,7 @@ def p_expression_increment_decrement(p):
 def p_error(p):
     print("Syntax error in input!")
 
-# Build the parser
-parser = yacc.yacc()
+parser = yacc.yacc(write_tables=False)
 
 # Shell text and user input
 print("Start Cooking (type 'exit' to quit): ")

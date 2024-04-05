@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDErightUMINUSrightPOWERnonassocEQNEQLTLTEGTGTEleftANDleftORrightNOTAND ARRAY ASSIGN BOOLEAN DECREMENT DIVIDE ELSE EQ FOR GT GTE ID IF INCREMENT LPAREN LT LTE MINUS NEQ NOT NUMBER OR PLUS POWER PRINT RPAREN STRING TIMES WHILEstatement : expression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression POWER expression\n                  | expression EQ expression\n                  | expression NEQ expression\n                  | expression LT expression\n                  | expression LTE expression\n                  | expression GT expression\n                  | expression GTE expression\n                  | expression AND expression\n                  | expression OR expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : STRINGexpression : ARRAYexpression : BOOLEANexpression : NOT expressionexpression : IDexpression : ID ASSIGN expressionexpression : ID INCREMENT\n                  | ID DECREMENTstatement : expression\n                 | PRINT LPAREN expression RPAREN'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDErightUMINUSrightPOWERnonassocEQNEQLTLTEGTGTEleftANDleftORrightNOTAND ASSIGN DECREMENT DIVIDE ELSE EQ FOR GT GTE ID IF INCREMENT LPAREN LT LTE MINUS NEQ NOT NUMBER OR PLUS POWER PRINT RPAREN TIMES WHILEstatement : statement : expression\n                 | PRINT LPAREN expression RPARENexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression POWER expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : IDexpression : ID ASSIGN expressionexpression : ID INCREMENT\n                  | ID DECREMENT'
     
-_lr_action_items = {'$end':([0,1,2,6,7,8,9,11,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,],[-1,0,-26,-17,-18,-19,-20,-22,-15,-21,-24,-25,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-16,-23,-27,]),'PRINT':([0,],[3,]),'MINUS':([0,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[5,13,5,5,-17,-18,-19,-20,5,-22,5,5,5,5,5,5,5,5,5,5,5,5,5,5,13,-15,-21,5,-24,-25,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,13,-16,13,]),'LPAREN':([0,3,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[4,25,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,]),'NUMBER':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,]),'STRING':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),'ARRAY':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,]),'BOOLEAN':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,]),'NOT':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,]),'ID':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'PLUS':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[12,-17,-18,-19,-20,-22,12,-15,-21,-24,-25,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,12,-16,12,]),'TIMES':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[14,-17,-18,-19,-20,-22,14,-15,-21,-24,-25,14,14,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,14,-16,14,]),'DIVIDE':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[15,-17,-18,-19,-20,-22,15,-15,-21,-24,-25,15,15,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,15,-16,15,]),'POWER':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[16,-17,-18,-19,-20,-22,16,16,-21,-24,-25,16,16,16,16,16,-7,-8,-9,-10,-11,-12,-13,-14,16,-16,16,]),'EQ':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[17,-17,-18,-19,-20,-22,17,17,-21,-24,-25,17,17,17,17,17,None,None,None,None,None,None,-13,-14,17,-16,17,]),'NEQ':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[18,-17,-18,-19,-20,-22,18,18,-21,-24,-25,18,18,18,18,18,None,None,None,None,None,None,-13,-14,18,-16,18,]),'LT':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[19,-17,-18,-19,-20,-22,19,19,-21,-24,-25,19,19,19,19,19,None,None,None,None,None,None,-13,-14,19,-16,19,]),'LTE':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[20,-17,-18,-19,-20,-22,20,20,-21,-24,-25,20,20,20,20,20,None,None,None,None,None,None,-13,-14,20,-16,20,]),'GT':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[21,-17,-18,-19,-20,-22,21,21,-21,-24,-25,21,21,21,21,21,None,None,None,None,None,None,-13,-14,21,-16,21,]),'GTE':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[22,-17,-18,-19,-20,-22,22,22,-21,-24,-25,22,22,22,22,22,None,None,None,None,None,None,-13,-14,22,-16,22,]),'AND':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[23,-17,-18,-19,-20,-22,23,23,-21,-24,-25,23,23,23,23,23,23,23,23,23,23,23,-13,-14,23,-16,23,]),'OR':([2,6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[24,-17,-18,-19,-20,-22,24,24,-21,-24,-25,24,24,24,24,24,24,24,24,24,24,24,24,-14,24,-16,24,]),'RPAREN':([6,7,8,9,11,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[-17,-18,-19,-20,-22,46,-15,-21,-24,-25,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,48,-16,-23,]),'ASSIGN':([11,],[29,]),'INCREMENT':([11,],[30,]),'DECREMENT':([11,],[31,]),}
+_lr_action_items = {'$end':([0,1,2,6,7,15,17,18,19,20,21,22,23,25,26,27,],[-1,0,-2,-11,-12,-9,-14,-15,-4,-5,-6,-7,-8,-10,-13,-3,]),'PRINT':([0,],[3,]),'MINUS':([0,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,],[5,9,5,5,-11,-12,5,5,5,5,5,5,9,-9,5,-14,-15,-4,-5,-6,-7,-8,9,-10,9,]),'LPAREN':([0,3,4,5,8,9,10,11,12,13,16,],[4,13,4,4,4,4,4,4,4,4,4,]),'NUMBER':([0,4,5,8,9,10,11,12,13,16,],[6,6,6,6,6,6,6,6,6,6,]),'ID':([0,4,5,8,9,10,11,12,13,16,],[7,7,7,7,7,7,7,7,7,7,]),'PLUS':([2,6,7,14,15,17,18,19,20,21,22,23,24,25,26,],[8,-11,-12,8,-9,-14,-15,-4,-5,-6,-7,-8,8,-10,8,]),'TIMES':([2,6,7,14,15,17,18,19,20,21,22,23,24,25,26,],[10,-11,-12,10,-9,-14,-15,10,10,-6,-7,-8,10,-10,10,]),'DIVIDE':([2,6,7,14,15,17,18,19,20,21,22,23,24,25,26,],[11,-11,-12,11,-9,-14,-15,11,11,-6,-7,-8,11,-10,11,]),'POWER':([2,6,7,14,15,17,18,19,20,21,22,23,24,25,26,],[12,-11,-12,12,12,-14,-15,12,12,12,12,12,12,-10,12,]),'RPAREN':([6,7,14,15,17,18,19,20,21,22,23,24,25,26,],[-11,-12,25,-9,-14,-15,-4,-5,-6,-7,-8,27,-10,-13,]),'ASSIGN':([7,],[16,]),'INCREMENT':([7,],[17,]),'DECREMENT':([7,],[18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,4,5,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,29,],[2,26,27,28,32,33,34,35,36,37,38,39,40,41,42,43,44,45,47,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,4,5,8,9,10,11,12,13,16,],[2,14,15,19,20,21,22,23,24,26,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,31 +27,19 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> <empty>','statement',0,'p_statement_empty','WalS.py',102),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','WalS.py',115),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','WalS.py',116),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','WalS.py',117),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','WalS.py',118),
-  ('expression -> expression POWER expression','expression',3,'p_expression_binop','WalS.py',119),
-  ('expression -> expression EQ expression','expression',3,'p_expression_binop','WalS.py',120),
-  ('expression -> expression NEQ expression','expression',3,'p_expression_binop','WalS.py',121),
-  ('expression -> expression LT expression','expression',3,'p_expression_binop','WalS.py',122),
-  ('expression -> expression LTE expression','expression',3,'p_expression_binop','WalS.py',123),
-  ('expression -> expression GT expression','expression',3,'p_expression_binop','WalS.py',124),
-  ('expression -> expression GTE expression','expression',3,'p_expression_binop','WalS.py',125),
-  ('expression -> expression AND expression','expression',3,'p_expression_binop','WalS.py',126),
-  ('expression -> expression OR expression','expression',3,'p_expression_binop','WalS.py',127),
-  ('expression -> MINUS expression','expression',2,'p_expression_unary_minus','WalS.py',156),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','WalS.py',160),
-  ('expression -> NUMBER','expression',1,'p_expression_number','WalS.py',164),
-  ('expression -> STRING','expression',1,'p_expression_string','WalS.py',168),
-  ('expression -> ARRAY','expression',1,'p_expression_array','WalS.py',172),
-  ('expression -> BOOLEAN','expression',1,'p_expression_boolean','WalS.py',176),
-  ('expression -> NOT expression','expression',2,'p_expression_not','WalS.py',183),
-  ('expression -> ID','expression',1,'p_expression_id','WalS.py',187),
-  ('expression -> ID ASSIGN expression','expression',3,'p_expression_assignment','WalS.py',192),
-  ('expression -> ID INCREMENT','expression',2,'p_expression_increment_decrement','WalS.py',197),
-  ('expression -> ID DECREMENT','expression',2,'p_expression_increment_decrement','WalS.py',198),
-  ('statement -> expression','statement',1,'p_statement_expr','WalS.py',213),
-  ('statement -> PRINT LPAREN expression RPAREN','statement',4,'p_statement_expr','WalS.py',214),
+  ('statement -> <empty>','statement',0,'p_statement_empty','WalS_Abstract_Syntax_Tree.py',88),
+  ('statement -> expression','statement',1,'p_statement_expr','WalS_Abstract_Syntax_Tree.py',93),
+  ('statement -> PRINT LPAREN expression RPAREN','statement',4,'p_statement_expr','WalS_Abstract_Syntax_Tree.py',94),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','WalS_Abstract_Syntax_Tree.py',101),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','WalS_Abstract_Syntax_Tree.py',102),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','WalS_Abstract_Syntax_Tree.py',103),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','WalS_Abstract_Syntax_Tree.py',104),
+  ('expression -> expression POWER expression','expression',3,'p_expression_binop','WalS_Abstract_Syntax_Tree.py',105),
+  ('expression -> MINUS expression','expression',2,'p_expression_unary_minus','WalS_Abstract_Syntax_Tree.py',109),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','WalS_Abstract_Syntax_Tree.py',113),
+  ('expression -> NUMBER','expression',1,'p_expression_number','WalS_Abstract_Syntax_Tree.py',117),
+  ('expression -> ID','expression',1,'p_expression_id','WalS_Abstract_Syntax_Tree.py',121),
+  ('expression -> ID ASSIGN expression','expression',3,'p_expression_assignment','WalS_Abstract_Syntax_Tree.py',125),
+  ('expression -> ID INCREMENT','expression',2,'p_expression_increment_decrement','WalS_Abstract_Syntax_Tree.py',129),
+  ('expression -> ID DECREMENT','expression',2,'p_expression_increment_decrement','WalS_Abstract_Syntax_Tree.py',130),
 ]
