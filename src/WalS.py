@@ -237,9 +237,9 @@ while True:
     # Tokenize input
     lexer.input(text)
 
-    # Print all tokens
-    for token in lexer:
-        print(token)
+    # # Print all tokens
+    # for token in lexer:
+    #     print(token)
 
     # Evaluate and print result
     parser.parse(text)
