@@ -3,7 +3,7 @@ import ply.yacc as yacc
 
 # Token declaration
 tokens = [
-    'ID', 'NUMBER', 'BOOLEAN',
+    'ID', 'NUMBER', 'BOOLEAN', 'STRING', 'ARRAY',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER',
     'LPAREN', 'RPAREN',
     'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE', # Comparison operators
@@ -43,6 +43,19 @@ t_DECREMENT = r'--'
 t_ASSIGN = r'='
 t_PRINT = r'print' 
 t_BOOLEAN = r'true|false'
+
+# String literal definition
+def t_STRING(t):
+    r'"(?:[^"\\]|\\.)*"'
+    t.value = t.value[1:-1]  # Remove quotes
+    return t
+
+# Array literal definition
+def t_ARRAY(t):
+    r'\[(?:\s*([a-zA-Z_][a-zA-Z_0-9]*|\d+)\s*(?:,\s*([a-zA-Z_][a-zA-Z_0-9]*|\d+)\s*)*)?\]'
+    # Matches comma-separated list of IDs or numbers within square brackets
+    t.value = [eval(x) if x.isdigit() else x for x in t.value[1:-1].split(',')]  # Convert numbers to integers
+    return t
 
 def t_NUMBER(t):
     r'\d+'
@@ -151,6 +164,14 @@ def p_expression_number(p):
     'expression : NUMBER'
     p[0] = p[1]
 
+def p_expression_string(p):
+    'expression : STRING'
+    p[0] = p[1]
+
+def p_expression_array(p):
+    'expression : ARRAY'
+    p[0] = p[1]
+
 def p_expression_boolean(p):
     'expression : BOOLEAN'
     if p[1] == 'true':
@@ -183,6 +204,14 @@ def p_expression_increment_decrement(p):
             p[0] = variables[p[1]]
         else:
             print(f"Variable '{p[1]}' not found!")
+
+def p_statement_expr(p):
+    '''statement : expression
+                 | PRINT LPAREN expression RPAREN'''
+    if len(p) == 2:  # If there's only one expression
+        print(p[1])
+    else:            # If there's a print statement with an expression
+        print(p[3])
 
 # Error rule for syntax errors
 def p_error(p):
