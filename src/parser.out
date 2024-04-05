@@ -16,7 +16,7 @@ Rule 2     expression -> expression PLUS expression
 Rule 3     expression -> expression MINUS expression
 Rule 4     expression -> expression TIMES expression
 Rule 5     expression -> expression DIVIDE expression
-Rule 6     expression -> expression POWER
+Rule 6     expression -> expression POWER expression
 Rule 7     expression -> expression EQ expression
 Rule 8     expression -> expression NEQ expression
 Rule 9     expression -> expression LT expression
@@ -73,7 +73,7 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression           : 2 2 3 3 4 4 5 5 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 16 22 25 26
+expression           : 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 16 22 25 26
 statement            : 0
 
 Parsing method: LALR
@@ -88,7 +88,7 @@ state 0
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -134,7 +134,7 @@ state 2
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -174,7 +174,7 @@ state 4
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -211,7 +211,7 @@ state 5
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -359,7 +359,7 @@ state 11
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -396,7 +396,7 @@ state 12
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -433,7 +433,7 @@ state 13
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -470,7 +470,7 @@ state 14
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -502,33 +502,12 @@ state 14
 
 state 15
 
-    (6) expression -> expression POWER .
-
-    PLUS            reduce using rule 6 (expression -> expression POWER .)
-    MINUS           reduce using rule 6 (expression -> expression POWER .)
-    TIMES           reduce using rule 6 (expression -> expression POWER .)
-    DIVIDE          reduce using rule 6 (expression -> expression POWER .)
-    POWER           reduce using rule 6 (expression -> expression POWER .)
-    EQ              reduce using rule 6 (expression -> expression POWER .)
-    NEQ             reduce using rule 6 (expression -> expression POWER .)
-    LT              reduce using rule 6 (expression -> expression POWER .)
-    LTE             reduce using rule 6 (expression -> expression POWER .)
-    GT              reduce using rule 6 (expression -> expression POWER .)
-    GTE             reduce using rule 6 (expression -> expression POWER .)
-    AND             reduce using rule 6 (expression -> expression POWER .)
-    OR              reduce using rule 6 (expression -> expression POWER .)
-    $end            reduce using rule 6 (expression -> expression POWER .)
-    RPAREN          reduce using rule 6 (expression -> expression POWER .)
-
-
-state 16
-
-    (7) expression -> expression EQ . expression
+    (6) expression -> expression POWER . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -558,14 +537,14 @@ state 16
 
     expression                     shift and go to state 34
 
-state 17
+state 16
 
-    (8) expression -> expression NEQ . expression
+    (7) expression -> expression EQ . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -595,14 +574,14 @@ state 17
 
     expression                     shift and go to state 35
 
-state 18
+state 17
 
-    (9) expression -> expression LT . expression
+    (8) expression -> expression NEQ . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -632,14 +611,14 @@ state 18
 
     expression                     shift and go to state 36
 
-state 19
+state 18
 
-    (10) expression -> expression LTE . expression
+    (9) expression -> expression LT . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -669,14 +648,14 @@ state 19
 
     expression                     shift and go to state 37
 
-state 20
+state 19
 
-    (11) expression -> expression GT . expression
+    (10) expression -> expression LTE . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -706,14 +685,14 @@ state 20
 
     expression                     shift and go to state 38
 
-state 21
+state 20
 
-    (12) expression -> expression GTE . expression
+    (11) expression -> expression GT . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -743,14 +722,14 @@ state 21
 
     expression                     shift and go to state 39
 
-state 22
+state 21
 
-    (13) expression -> expression AND . expression
+    (12) expression -> expression GTE . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -780,14 +759,14 @@ state 22
 
     expression                     shift and go to state 40
 
-state 23
+state 22
 
-    (14) expression -> expression OR . expression
+    (13) expression -> expression AND . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -817,14 +796,14 @@ state 23
 
     expression                     shift and go to state 41
 
-state 24
+state 23
 
-    (26) statement -> PRINT LPAREN . expression RPAREN
+    (14) expression -> expression OR . expression
     (2) expression -> . expression PLUS expression
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -854,6 +833,43 @@ state 24
 
     expression                     shift and go to state 42
 
+state 24
+
+    (26) statement -> PRINT LPAREN . expression RPAREN
+    (2) expression -> . expression PLUS expression
+    (3) expression -> . expression MINUS expression
+    (4) expression -> . expression TIMES expression
+    (5) expression -> . expression DIVIDE expression
+    (6) expression -> . expression POWER expression
+    (7) expression -> . expression EQ expression
+    (8) expression -> . expression NEQ expression
+    (9) expression -> . expression LT expression
+    (10) expression -> . expression LTE expression
+    (11) expression -> . expression GT expression
+    (12) expression -> . expression GTE expression
+    (13) expression -> . expression AND expression
+    (14) expression -> . expression OR expression
+    (15) expression -> . MINUS expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . NUMBER
+    (18) expression -> . STRING
+    (19) expression -> . ARRAY
+    (20) expression -> . BOOLEAN
+    (21) expression -> . ID
+    (22) expression -> . ID ASSIGN expression
+    (23) expression -> . ID INCREMENT
+    (24) expression -> . ID DECREMENT
+
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 4
+    NUMBER          shift and go to state 6
+    STRING          shift and go to state 7
+    ARRAY           shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    ID              shift and go to state 10
+
+    expression                     shift and go to state 43
+
 state 25
 
     (16) expression -> LPAREN expression . RPAREN
@@ -861,7 +877,7 @@ state 25
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -871,7 +887,7 @@ state 25
     (13) expression -> expression . AND expression
     (14) expression -> expression . OR expression
 
-    RPAREN          shift and go to state 43
+    RPAREN          shift and go to state 44
     PLUS            shift and go to state 11
     MINUS           shift and go to state 12
     TIMES           shift and go to state 13
@@ -894,7 +910,7 @@ state 26
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -942,7 +958,7 @@ state 27
     (3) expression -> . expression MINUS expression
     (4) expression -> . expression TIMES expression
     (5) expression -> . expression DIVIDE expression
-    (6) expression -> . expression POWER
+    (6) expression -> . expression POWER expression
     (7) expression -> . expression EQ expression
     (8) expression -> . expression NEQ expression
     (9) expression -> . expression LT expression
@@ -970,7 +986,7 @@ state 27
     BOOLEAN         shift and go to state 9
     ID              shift and go to state 10
 
-    expression                     shift and go to state 44
+    expression                     shift and go to state 45
 
 state 28
 
@@ -1021,7 +1037,7 @@ state 30
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1069,7 +1085,7 @@ state 31
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1117,7 +1133,7 @@ state 32
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1165,7 +1181,7 @@ state 33
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1208,12 +1224,60 @@ state 33
 
 state 34
 
+    (6) expression -> expression POWER expression .
+    (2) expression -> expression . PLUS expression
+    (3) expression -> expression . MINUS expression
+    (4) expression -> expression . TIMES expression
+    (5) expression -> expression . DIVIDE expression
+    (6) expression -> expression . POWER expression
+    (7) expression -> expression . EQ expression
+    (8) expression -> expression . NEQ expression
+    (9) expression -> expression . LT expression
+    (10) expression -> expression . LTE expression
+    (11) expression -> expression . GT expression
+    (12) expression -> expression . GTE expression
+    (13) expression -> expression . AND expression
+    (14) expression -> expression . OR expression
+
+    PLUS            reduce using rule 6 (expression -> expression POWER expression .)
+    MINUS           reduce using rule 6 (expression -> expression POWER expression .)
+    TIMES           reduce using rule 6 (expression -> expression POWER expression .)
+    DIVIDE          reduce using rule 6 (expression -> expression POWER expression .)
+    $end            reduce using rule 6 (expression -> expression POWER expression .)
+    RPAREN          reduce using rule 6 (expression -> expression POWER expression .)
+    POWER           shift and go to state 15
+    EQ              shift and go to state 16
+    NEQ             shift and go to state 17
+    LT              shift and go to state 18
+    LTE             shift and go to state 19
+    GT              shift and go to state 20
+    GTE             shift and go to state 21
+    AND             shift and go to state 22
+    OR              shift and go to state 23
+
+  ! POWER           [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! EQ              [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! NEQ             [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! LT              [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! LTE             [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! GT              [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! GTE             [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! AND             [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! OR              [ reduce using rule 6 (expression -> expression POWER expression .) ]
+  ! PLUS            [ shift and go to state 11 ]
+  ! MINUS           [ shift and go to state 12 ]
+  ! TIMES           [ shift and go to state 13 ]
+  ! DIVIDE          [ shift and go to state 14 ]
+
+
+state 35
+
     (7) expression -> expression EQ expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1254,14 +1318,14 @@ state 34
   ! GTE             [ shift and go to state 21 ]
 
 
-state 35
+state 36
 
     (8) expression -> expression NEQ expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1302,14 +1366,14 @@ state 35
   ! GTE             [ shift and go to state 21 ]
 
 
-state 36
+state 37
 
     (9) expression -> expression LT expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1350,14 +1414,14 @@ state 36
   ! GTE             [ shift and go to state 21 ]
 
 
-state 37
+state 38
 
     (10) expression -> expression LTE expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1398,14 +1462,14 @@ state 37
   ! GTE             [ shift and go to state 21 ]
 
 
-state 38
+state 39
 
     (11) expression -> expression GT expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1446,14 +1510,14 @@ state 38
   ! GTE             [ shift and go to state 21 ]
 
 
-state 39
+state 40
 
     (12) expression -> expression GTE expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1494,14 +1558,14 @@ state 39
   ! GTE             [ shift and go to state 21 ]
 
 
-state 40
+state 41
 
     (13) expression -> expression AND expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1542,14 +1606,14 @@ state 40
   ! AND             [ shift and go to state 22 ]
 
 
-state 41
+state 42
 
     (14) expression -> expression OR expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1590,14 +1654,14 @@ state 41
   ! OR              [ shift and go to state 23 ]
 
 
-state 42
+state 43
 
     (26) statement -> PRINT LPAREN expression . RPAREN
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1607,7 +1671,7 @@ state 42
     (13) expression -> expression . AND expression
     (14) expression -> expression . OR expression
 
-    RPAREN          shift and go to state 45
+    RPAREN          shift and go to state 46
     PLUS            shift and go to state 11
     MINUS           shift and go to state 12
     TIMES           shift and go to state 13
@@ -1623,7 +1687,7 @@ state 42
     OR              shift and go to state 23
 
 
-state 43
+state 44
 
     (16) expression -> LPAREN expression RPAREN .
 
@@ -1644,14 +1708,14 @@ state 43
     RPAREN          reduce using rule 16 (expression -> LPAREN expression RPAREN .)
 
 
-state 44
+state 45
 
     (22) expression -> ID ASSIGN expression .
     (2) expression -> expression . PLUS expression
     (3) expression -> expression . MINUS expression
     (4) expression -> expression . TIMES expression
     (5) expression -> expression . DIVIDE expression
-    (6) expression -> expression . POWER
+    (6) expression -> expression . POWER expression
     (7) expression -> expression . EQ expression
     (8) expression -> expression . NEQ expression
     (9) expression -> expression . LT expression
@@ -1705,7 +1769,7 @@ state 44
   ! OR              [ reduce using rule 22 (expression -> ID ASSIGN expression .) ]
 
 
-state 45
+state 46
 
     (26) statement -> PRINT LPAREN expression RPAREN .
 
@@ -1714,16 +1778,16 @@ state 45
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 44 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 44 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 44 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 44 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 44 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 44 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 44 resolved as shift
-WARNING: shift/reduce conflict for LT in state 44 resolved as shift
-WARNING: shift/reduce conflict for LTE in state 44 resolved as shift
-WARNING: shift/reduce conflict for GT in state 44 resolved as shift
-WARNING: shift/reduce conflict for GTE in state 44 resolved as shift
-WARNING: shift/reduce conflict for AND in state 44 resolved as shift
-WARNING: shift/reduce conflict for OR in state 44 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 45 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 45 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 45 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 45 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 45 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 45 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 45 resolved as shift
+WARNING: shift/reduce conflict for LT in state 45 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 45 resolved as shift
+WARNING: shift/reduce conflict for GT in state 45 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 45 resolved as shift
+WARNING: shift/reduce conflict for AND in state 45 resolved as shift
+WARNING: shift/reduce conflict for OR in state 45 resolved as shift

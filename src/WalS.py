@@ -22,7 +22,7 @@ t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
-t_POWER = r'\^'
+t_POWER = r'\*\*'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_EQ = r'=='
@@ -116,7 +116,7 @@ def p_expression_binop(p):
                   | expression MINUS expression
                   | expression TIMES expression
                   | expression DIVIDE expression
-                  | expression POWER
+                  | expression POWER expression
                   | expression EQ expression
                   | expression NEQ expression
                   | expression LT expression
@@ -133,7 +133,7 @@ def p_expression_binop(p):
         p[0] = p[1] * p[3]
     elif p[2] == '/':
         p[0] = p[1] / p[3]
-    elif p[2] == '^':
+    elif p[2] == '**':
         p[0] = p[1] ** p[3]
     elif p[2] == '==':
         p[0] = p[1] == p[3]
