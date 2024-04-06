@@ -21,6 +21,7 @@
 ### Parser Definition Example:
 * yacc.py uses a tuple ‘p’ containing the components of the matches rule:
 * P[0] is reserved for the left side (expression), P[1] and onwards represents the right side (BOOLEAN)
+  
 **Grammar Rule for Booleans**
 ```
 def p_expression_boolean(p):
