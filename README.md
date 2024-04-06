@@ -45,7 +45,16 @@ Wals > 10 mix 2 fold 5
 Wals > 4.0
 // 10 * 2 / 5 = 4
 ```
-**3. Variable Handling**
+**3. Increment and Decrement**
+```
+Wals > x = 10
+10
+Wals > x++
+11
+Wals > x--
+10
+```
+**4. Variable Handling**
 ```
 Wals > x = 5
 5
@@ -56,7 +65,7 @@ Wals > z = x + y
 Wals > print(z)
 15
 ```
-**4. Boolean and Logic**
+**5. Boolean and Logic**
 ```
 Wals > a = 5
 5
@@ -71,9 +80,14 @@ True
 Wals > print((a > b) || (b == 10))
 True
 ```
-**5. Strings and Comments**
+**6. Strings and Comments**
 ```
 Wals > print("Hello World") # This part is recognized as a comment!
 Hello World
+```
+**7. Arrays**
+```
+Wals > arr = [1,2,3]
+[1, 2, 3]
 ```
 
