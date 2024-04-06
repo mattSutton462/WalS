@@ -45,7 +45,7 @@ Wals > 10 mix 2 fold 5
 Wals > 4.0
 // 10 * 2 / 5 = 4
 ```
-**Variable Handling**
+**3. Variable Handling**
 ```
 Wals > x = 5
 5
@@ -56,7 +56,7 @@ Wals > z = x + y
 Wals > print(z)
 15
 ```
-**Boolean and Logic**
+**4. Boolean and Logic**
 ```
 Wals > a = 5
 5
@@ -71,7 +71,7 @@ True
 Wals > print((a > b) || (b == 10))
 True
 ```
-**Strings and Comments**
+**5. Strings and Comments**
 ```
 Wals > print("Hello World") # This part is recognized as a comment!
 Hello World
