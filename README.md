@@ -18,6 +18,19 @@
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
 
+### Parser Definition Example:
+* yacc.py uses a tuple ‘p’ containing the components of the matches rule:
+* P[0] is reserved for the left side (expression), P[1] and onwards represents the right side (BOOLEAN)
+** Grammar Rule for Booleans**
+```
+def p_expression_boolean(p):
+    'expression : BOOLEAN'
+    if p[1] == 'true':
+        p[0] = True
+    else:
+        p[0] = False
+```
+
 ### Code Examples:
 **1. Addition and Subtraction**
 ```
