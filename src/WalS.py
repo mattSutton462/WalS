@@ -18,13 +18,13 @@ tokens = [
 variables = {}
 
 # Token regular expressions
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
+t_PLUS = r'add'
+t_MINUS = r'slice'
+t_TIMES = r'mix'
+t_DIVIDE = r'fold'
 t_POWER = r'\*\*'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+t_LPAREN = r'preheat'
+t_RPAREN = r'oven'
 t_EQ = r'=='
 t_NEQ = r'!='
 t_LT = r'<'
@@ -68,6 +68,18 @@ def t_ID(t):
         t.type = 'PRINT'
     elif t.value == 'true' or t.value == 'false':   # Recognize true|false as BOOLEAN token type
         t.type = 'BOOLEAN'
+    elif t.value == 'add':
+        t.type = 'PLUS'
+    elif t.value == 'slice':
+        t.type = 'MINUS'
+    elif t.value == 'mix':
+        t.type = 'TIMES'
+    elif t.value == 'fold':
+        t.type = 'DIVIDE'
+    elif t.value == 'preheat':
+        t.type = "LPAREN"
+    elif t.value == 'oven':
+        t.type = "RPAREN"
     return t
 
 # Ignored characters
@@ -125,13 +137,13 @@ def p_expression_binop(p):
                   | expression GTE expression
                   | expression AND expression
                   | expression OR expression'''
-    if p[2] == '+':
+    if p[2] == 'add':
         p[0] = p[1] + p[3]
-    elif p[2] == '-':
+    elif p[2] == 'slice':
         p[0] = p[1] - p[3]
-    elif p[2] == '*':
+    elif p[2] == 'mix':
         p[0] = p[1] * p[3]
-    elif p[2] == '/':
+    elif p[2] == 'fold':
         p[0] = p[1] / p[3]
     elif p[2] == '**':
         p[0] = p[1] ** p[3]
@@ -229,8 +241,8 @@ while True:
     lexer.input(text)
 
     # # Print all tokens
-    # for token in lexer:
-    #     print(token)
+    for token in lexer:
+         print(token)
 
     # Evaluate and print result
     parser.parse(text)
