@@ -8,7 +8,7 @@ tokens = [
     'LPAREN', 'RPAREN',
     'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE', # Comparison operators
     'AND', 'OR', 'NOT',                    # Logical operators
-    'IF', 'ELSE', 'WHILE', 'FOR',          # Control flow keywords
+    # 'IF', 'ELSE', 'WHILE', 'FOR',          # Control flow keywords
     'INCREMENT', 'DECREMENT',              # Increment and decrement operators
     'PRINT',                               # Print keyword
     'ASSIGN',                              # Assignment operator
@@ -34,10 +34,10 @@ t_GTE = r'>='
 t_AND = r'&&'
 t_OR = r'\|\|'
 t_NOT = r'!'
-t_IF = r'if'
-t_ELSE = r'else'
-t_WHILE = r'while'
-t_FOR = r'for'
+# t_IF = r'if'
+# t_ELSE = r'else'
+# t_WHILE = r'while'
+# t_FOR = r'for'
 t_INCREMENT = r'\+\+'
 t_DECREMENT = r'--'
 t_ASSIGN = r'='
@@ -197,7 +197,7 @@ def p_expression_not(p):
 
 def p_expression_id(p):
     'expression : ID'
-    # Handle variable lookup here
+    # Handle variable lookup hereD
     p[0] = variables.get(p[1], 0)  # Return 0 if variable is not found
 
 def p_expression_assignment(p):
@@ -221,7 +221,7 @@ def p_expression_increment_decrement(p):
         else:
             print(f"Variable '{p[1]}' not found!")
 
-# Error rule for syntax errors
+# Error Handler for syntax errors
 def p_error(p):
     print("Syntax error in input!")
 

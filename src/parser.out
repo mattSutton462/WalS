@@ -1,12 +1,5 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    ELSE
-    FOR
-    IF
-    WHILE
-
 Grammar
 
 Rule 0     S' -> statement
@@ -46,13 +39,10 @@ ASSIGN               : 25
 BOOLEAN              : 22
 DECREMENT            : 27
 DIVIDE               : 7
-ELSE                 : 
 EQ                   : 9
-FOR                  : 
 GT                   : 13
 GTE                  : 14
 ID                   : 24 25 26 27
-IF                   : 
 INCREMENT            : 26
 LPAREN               : 3 18
 LT                   : 11
@@ -68,7 +58,6 @@ PRINT                : 3
 RPAREN               : 3 18
 STRING               : 20
 TIMES                : 6
-WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear

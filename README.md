@@ -18,6 +18,20 @@
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
 
+### Parser Definition Example:
+* yacc.py uses a tuple ‘p’ containing the components of the matches rule:
+* P[0] is reserved for the left side (expression), P[1] and onwards represents the right side (BOOLEAN)
+  
+**Grammar Rule for Booleans**
+```
+def p_expression_boolean(p):
+    'expression : BOOLEAN'
+    if p[1] == 'true':
+        p[0] = True
+    else:
+        p[0] = False
+```
+
 ### Code Examples:
 **1. Addition and Subtraction**
 ```
@@ -31,9 +45,49 @@ Wals > 10 mix 2 fold 5
 Wals > 4.0
 // 10 * 2 / 5 = 4
 ```
-**3. Handling Decimal Numbers (Float)**
+**3. Increment and Decrement**
 ```
-Wals > 2.5 mix 3.5 slice 3.25
-Wals > 5.5
-// 2.5 * 3.5 - 3.25 = 5.5
+Wals > x = 10
+10
+Wals > x++
+11
+Wals > x--
+10
 ```
+**4. Variable Handling**
+```
+Wals > x = 5
+5
+Wals > y = 10
+10
+Wals > z = x + y
+15
+Wals > print(z)
+15
+```
+**5. Boolean and Logic**
+```
+Wals > a = 5
+5
+Wals > b = 10
+10
+Wals > print(a == b)
+False
+Wals > print(a != b)
+True
+Wals > print((a < b) && (b==10))
+True
+Wals > print((a > b) || (b == 10))
+True
+```
+**6. Strings and Comments**
+```
+Wals > print("Hello World") # This part is recognized as a comment!
+Hello World
+```
+**7. Arrays**
+```
+Wals > arr = [1,2,3]
+[1, 2, 3]
+```
+
