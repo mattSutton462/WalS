@@ -1,0 +1,34 @@
+expression ::= expression PLUS expression
+            | expression MINUS expression
+            | expression TIMES expression
+            | expression DIVIDE expression
+            | expression POWER expression
+            | expression AND expression
+            | expression OR expression
+            | NUMBER
+            | ID
+            | ID INCREMENT
+            | ID DECREMENT
+            | expression EQ expression
+            | expression NEQ expression
+            | expression LT expression
+            | expression LTE expression
+            | expression GT expression
+            | expression GTE expression
+            | MINUS expression %prec UMINUS
+            | LPAREN expression RPAREN
+            | STRING
+            | ARRAY
+            | BOOLEAN
+            | NOT expression
+            | ID ASSIGN expression
+
+
+statement ::= expression
+            | PRINT LPAREN expression RPAREN
+            | IF expression THEN statement opt_else
+            | WHILE expression DO statement
+            | FOR ID ASSIGN expression TO expression DO statement
+
+opt_else ::= ELSE statement
+            | empty
