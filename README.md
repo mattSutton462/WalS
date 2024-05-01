@@ -1,22 +1,40 @@
-# WalS
+w# WalS
 
 ### Abstract:
 * For all you aspiring coding cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes that input text to parse and evaluate expressions. 
 
 ### Token Definitions:
-* FLOAT: matches any floating-point number.
-* INT: matches any sequence of digits.
-* ADD: matches with the addition operator "+".
-* SLICE: matches with the subtraction operator "-".
-* MIX: matches with the multiplication operator "*".
-* FOLD: matches with the division operator "/".
-* PREHEAT: matches with left parenthesis "(".
-* OVEN: matches with the right parenthesis ")".
-* BAKE: matches with the newline character "\n".
-* WHISK: declares a variable
 * ID: matches any sequence of letters or underscores starting with a letter or underscore.
-* WHITESPACE: matches with any whitespace.
-* UNKNOWN: matches with any input that is not tokenized.
+* NUMBER matches with any number
+* STRING: matches with any string definition
+* ARRAY: matches with any array declaration 
+* ADD: matches with the addition operator "+"
+* SLICE: matches with the subtraction operator "-"
+* MIX: matches with the multiplication operator "*"
+* FOLD: matches with the division operator "/"
+* PREHEAT: matches with left parenthesis "("
+* OVEN: matches with right parenthesis ")"
+* EQ: matches with "==" 
+* NEQ: matches with "!=" 
+* LT: matches with "<" 
+* LTE: matches with "<=" 
+* GT: matches with ">" 
+* GTE: matches with ">=" 
+* AND: matches with "&&" 
+* OR: matches with "||"  
+* NOT: matches with "!"
+* IF: matches with "if"
+* ELSE: matches with "else"
+* THEN: matches with "then"
+* WHILE: matches with "while"
+* FOR: matches with "for"
+* DO: matches with "do"
+* TO: matches with "to"
+* INCREMENT: matches with "++" 
+* DECREMENT: matches with "--"
+* ASSIGN: matches with "ASSIGN"
+* PRINT: matches with "PRINT"
+* BOOLEAN: matches with "true|false" 
 
 ### Parser Definition Example:
 * yacc.py uses a tuple ‘p’ containing the components of the matches rule:
@@ -71,18 +89,24 @@ Wals > a = 5
 5
 Wals > b = 10
 10
-Wals > print(a == b)
+Wals > print preheat a == b oven
+// print (a == b)
 False
-Wals > print(a != b)
+
+Wals > print preheat a != b oven
+// print(a != b)
 True
-Wals > print((a < b) && (b==10))
+Wals > print preheat preheat a < b oven && preheat b==10 oven oven
+//  print((a < b) && (b==10))
 True
-Wals > print((a > b) || (b == 10))
+Wals > print preheat preheat a > b oven || preheat b == 10 oven oven 
+// print((a > b) || (b == 10))
 True
 ```
 **6. Strings and Comments**
 ```
-Wals > print("Hello World") # This part is recognized as a comment!
+Wals > print preheat "Hello World" oven # This part is recognized as a comment!
+// print("Hello World") # This part is recognized as a comment!
 Hello World
 ```
 **7. Arrays**
