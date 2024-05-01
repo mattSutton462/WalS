@@ -1,4 +1,4 @@
-w# WalS
+# WalS
 
 ### Abstract:
 * For all you aspiring coding cooks out there, this is the programming language for you! Our code defines tokens for various cooking-related actions and then processes that input text to parse and evaluate expressions. 
@@ -8,12 +8,12 @@ w# WalS
 * NUMBER matches with any number
 * STRING: matches with any string definition
 * ARRAY: matches with any array declaration 
-* ADD: matches with the addition operator "+"
-* SLICE: matches with the subtraction operator "-"
-* MIX: matches with the multiplication operator "*"
-* FOLD: matches with the division operator "/"
-* PREHEAT: matches with left parenthesis "("
-* OVEN: matches with right parenthesis ")"
+* ADD: matches with the addition operator "add"
+* SLICE: matches with the subtraction operator "slice"
+* MIX: matches with the multiplication operator "mix"
+* FOLD: matches with the division operator "fold"
+* PREHEAT: matches with left parenthesis "preheat"
+* OVEN: matches with right parenthesis "oven"
 * EQ: matches with "==" 
 * NEQ: matches with "!=" 
 * LT: matches with "<" 
