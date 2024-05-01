@@ -80,7 +80,7 @@ Wals > y = 10
 10
 Wals > z = x add y
 15
-Wals > print preheat z oven
+Wals > bake preheat z oven
 // print(z)
 15
 ```
@@ -90,23 +90,23 @@ Wals > a = 5
 5
 Wals > b = 10
 10
-Wals > print preheat a == b oven
+Wals > bake preheat a == b oven
 // print (a == b)
 False
 
-Wals > print preheat a != b oven
+Wals > bake preheat a != b oven
 // print(a != b)
 True
-Wals > print preheat preheat a < b oven && preheat b==10 oven oven
+Wals > bake preheat preheat a < b oven && preheat b==10 oven oven
 //  print((a < b) && (b==10))
 True
-Wals > print preheat preheat a > b oven || preheat b == 10 oven oven 
+Wals > bake preheat preheat a > b oven || preheat b == 10 oven oven 
 // print((a > b) || (b == 10))
 True
 ```
 **6. Strings and Comments**
 ```
-Wals > print preheat "Hello World" oven # This part is recognized as a comment!
+Wals > bake preheat "Hello World" oven # This part is recognized as a comment!
 // print("Hello World") # This part is recognized as a comment!
 Hello World
 ```
