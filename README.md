@@ -80,7 +80,8 @@ Wals > y = 10
 10
 Wals > z = x add y
 15
-Wals > print(z)
+Wals > print preheat z oven
+// print(z)
 15
 ```
 **5. Boolean and Logic**
