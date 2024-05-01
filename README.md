@@ -13,8 +13,6 @@
 * PREHEAT: matches with left parenthesis "(".
 * OVEN: matches with the right parenthesis ")".
 * ID: matches any sequence of letters or underscores starting with a letter or underscore.
-* WHITESPACE: matches with any whitespace.
-* UNKNOWN: matches with any input that is not tokenized.
 
 ### Parser Definition Example:
 * yacc.py uses a tuple ‘p’ containing the components of the matches rule:
