@@ -8,12 +8,13 @@
 * NUMBER matches with any number
 * STRING: matches with any string definition
 * ARRAY: matches with any array declaration 
-* ADD: matches with the addition operator "add"
-* SLICE: matches with the subtraction operator "slice"
-* MIX: matches with the multiplication operator "mix"
-* FOLD: matches with the division operator "fold"
-* PREHEAT: matches with left parenthesis "preheat"
-* OVEN: matches with right parenthesis "oven"
+* ADD: replacement for the addition operator "+"
+* SLICE: replacement for the subtraction operator "-"
+* MIX: replacement for the multiplication operator "mix"
+* FOLD: replacement for the division operator "fold"
+* PREHEAT: replacement for left parenthesis "preheat"
+* OVEN: replacement for right parenthesis "oven"
+* BAKE: replacement for statement "PRINT"
 * EQ: matches with "==" 
 * NEQ: matches with "!=" 
 * LT: matches with "<" 
@@ -33,7 +34,6 @@
 * INCREMENT: matches with "++" 
 * DECREMENT: matches with "--"
 * ASSIGN: matches with "ASSIGN"
-* PRINT: matches with "PRINT"
 * BOOLEAN: matches with "true|false" 
 
 ### Parser Definition Example:
