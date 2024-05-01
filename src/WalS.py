@@ -118,15 +118,18 @@ lexer = lex.lex()
 
 # Parsing rules
 precedence = (
+    ('nonassoc', 'IF', 'ELSE'),  # Handle the dangling-else problem
+    ('left', 'OR'),
+    ('left', 'AND'),
+    ('nonassoc', 'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE'),  # Comparison operators should not chain
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UMINUS'),  # Unary minus operator
-    ('right', 'POWER'),
-    ('nonassoc', 'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE'),  # Comparison operators
-    ('left', 'AND'),  # Logical AND
-    ('left', 'OR'),   # Logical OR
-    ('right', 'NOT'),  # Logical NOT
+    ('right', 'POWER'),   # Right associative for exponentiation
+    ('right', 'NOT')      # Logical NOT
 )
+
+
 
 def p_statement_empty(p):
     'statement : '
@@ -144,76 +147,36 @@ def p_statement_expr(p):
 def p_statement_if(p):
     'statement : IF expression THEN statement opt_else'
     if p[2]:
-        p[0] = p[4]
-    else:
-        p[0] = p[5] if p[5] is not None else None
+        parser.parse(p[4])
+    elif len(p) > 5 and p[5] is not None:
+        parser.parse(p[5])
+
 
 def p_opt_else(p):
     '''opt_else : ELSE statement
                 | empty'''
-    if len(p) > 2:
+    if len(p) == 3:
         p[0] = p[2]
     else:
         p[0] = None
+
 
 def p_empty(p):
     'empty :'
     pass
 
-
-
 def p_expression(p):
     '''expression : expression PLUS expression
                   | expression MINUS expression
                   | expression TIMES expression
                   | expression DIVIDE expression
                   | expression POWER expression
-                  | expression EQ expression
-                  | expression NEQ expression
-                  | expression LT expression
-                  | expression LTE expression
-                  | expression GT expression
-                  | expression GTE expression'''
-    if p[2] == 'add':
-        p[0] = p[1] + p[3]
-    elif p[2] == 'slice':
-        p[0] = p[1] - p[3]
-    elif p[2] == 'mix':
-        p[0] = p[1] * p[3]
-    elif p[2] == 'fold':
-        p[0] = p[1] / p[3]
-    elif p[2] == '**':
-        p[0] = p[1] ** p[3]
-    elif p[2] == '==':
-        p[0] = p[1] == p[3]
-    elif p[2] == '!=':
-        p[0] = p[1] != p[3]
-    elif p[2] == '<':
-        p[0] = p[1] < p[3]
-    elif p[2] == '<=':
-        p[0] = p[1] <= p[3]
-    elif p[2] == '>':
-        p[0] = p[1] > p[3]
-    elif p[2] == '>=':
-        p[0] = p[1] >= p[3]
-    else:
-        p[0] = p[1]
-
-def p_expression(p):
-    '''expression : expression PLUS expression
-                  | expression MINUS expression
-                  | expression TIMES expression
-                  | expression DIVIDE expression
-                  | expression POWER expression
-                  | expression EQ expression
-                  | expression NEQ expression
-                  | expression LT expression
-                  | expression LTE expression
-                  | expression GT expression
-                  | expression GTE expression
                   | expression AND expression
                   | expression OR expression
-                  | NUMBER'''
+                  | NUMBER
+                  | ID
+                  | ID INCREMENT
+                  | ID DECREMENT'''
     if len(p) == 4:  # If there's a binary operation
         if p[2] == 'add':
             p[0] = p[1] + p[3]
@@ -225,24 +188,49 @@ def p_expression(p):
             p[0] = p[1] / p[3]
         elif p[2] == 'power':
             p[0] = p[1] ** p[3]
-        elif p[2] == '==':
-            p[0] = p[1] == p[3]
-        elif p[2] == '!=':
-            p[0] = p[1] != p[3]
-        elif p[2] == '<':
-            p[0] = p[1] < p[3]
-        elif p[2] == '<=':
-            p[0] = p[1] <= p[3]
-        elif p[2] == '>':
-            p[0] = p[1] > p[3]
-        elif p[2] == '>=':
-            p[0] = p[1] >= p[3]
         elif p[2] == '&&':
             p[0] = p[1] and p[3]
         elif p[2] == '||':
             p[0] = p[1] or p[3]
-    else:  # If it's a number
-        p[0] = p[1]
+    if len(p) == 2:  # If it's a single expression (NUMBER or ID)
+        if isinstance(p[1], int):  # If it's a number
+            p[0] = p[1]
+        elif p[1] in variables:  # If it's an ID (variable)
+            p[0] = variables[p[1]]
+    elif len(p) == 3:  # If it's an increment or decrement operation
+        if p[2] == '++':
+            if p[1] in variables:
+                variables[p[1]] += 1
+                p[0] = variables[p[1]]
+            else:
+                print(f"Variable '{p[1]}' not found!")
+        elif p[2] == '--':
+            if p[1] in variables:
+                variables[p[1]] -= 1
+                p[0] = variables[p[1]]
+            else:
+                print(f"Variable '{p[1]}' not found!")
+
+def p_expression_relational(p):
+    '''expression : expression EQ expression
+                  | expression NEQ expression
+                  | expression LT expression
+                  | expression LTE expression
+                  | expression GT expression
+                  | expression GTE expression'''
+    if p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '<=':
+        p[0] = p[1] <= p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '>=':
+        p[0] = p[1] >= p[3]
+
 
 def p_expression_unary_minus(p):
     'expression : MINUS expression %prec UMINUS'
@@ -271,41 +259,32 @@ def p_expression_not(p):
     'expression : NOT expression'
     p[0] = not p[2]
 
-def p_expression_id(p):
-    'expression : ID'
-    # Handle variable lookup hereD
-    p[0] = variables.get(p[1], 0)  # Return 0 if variable is not found
-
 def p_expression_assignment(p):
     'expression : ID ASSIGN expression'
     variables[p[1]] = p[3]  # Assign value to variable
     p[0] = p[3]             # Return the assigned value
 
-def p_expression_increment_decrement(p):
-    '''expression : ID INCREMENT
-                  | ID DECREMENT'''
-    if p[2] == '++':
-        if p[1] in variables:
-            variables[p[1]] += 1
-            p[0] = variables[p[1]]
-        else:
-            print(f"Variable '{p[1]}' not found!")
-    elif p[2] == '--':
-        if p[1] in variables:
-            variables[p[1]] -= 1
-            p[0] = variables[p[1]]
-        else:
-            print(f"Variable '{p[1]}' not found!")
-
 def p_statement_while(p):
     'statement : WHILE expression DO statement'
-    while p[2]:
-        p[0] = p[4]
+    while p[2]:  # Evaluate the loop condition
+        parser.parse(p[4])  # Parse and execute the loop body
+        if not eval(p[2], {}, variables):  # Re-evaluate the condition with current variable states
+            break
 
 def p_statement_for(p):
     'statement : FOR ID ASSIGN expression TO expression DO statement'
-    for variables[p[2]] in range(p[4], p[6]):
-        p[0] = p[8]
+    # Extract loop parameters
+    var_name = p[2]
+    start_value = p[4]
+    end_value = p[6] + 1  # Assuming inclusive range, hence end_value + 1 for Python range handling
+    # Execute the loop
+    for variables[var_name] in range(start_value, end_value):
+        # Evaluate the loop condition
+        if variables[var_name] >= end_value:
+            break
+        p[8]  # Execute the loop body
+        parser.parse(p[8])  # This is to re-parse the statement body for every iteration
+
 
 # Error Handler for syntax errors
 def p_error(p):
@@ -328,7 +307,7 @@ while True:
 
     # # Print all tokens
     for token in lexer:
-         print(token)
+        print(token)
 
     # Evaluate and print result
     parser.parse(text)
