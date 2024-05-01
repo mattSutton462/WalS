@@ -78,7 +78,7 @@ Wals > x = 5
 5
 Wals > y = 10
 10
-Wals > z = x + y
+Wals > z = x add y
 15
 Wals > print(z)
 15
