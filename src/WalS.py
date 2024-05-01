@@ -8,10 +8,11 @@ tokens = [
     'LPAREN', 'RPAREN',
     'EQ', 'NEQ', 'LT', 'LTE', 'GT', 'GTE', # Comparison operators
     'AND', 'OR', 'NOT',                    # Logical operators
-    # 'IF', 'ELSE', 'WHILE', 'FOR',          # Control flow keywords
+    'IF', 'THEN', 'ELSE', 'WHILE', 'FOR',  # Control flow keywords
     'INCREMENT', 'DECREMENT',              # Increment and decrement operators
     'PRINT',                               # Print keyword
     'ASSIGN',                              # Assignment operator
+    'DO', 'TO'                             # Other for loop keywords        
 ]
 
 # Dictionary to store variables
@@ -34,10 +35,13 @@ t_GTE = r'>='
 t_AND = r'&&'
 t_OR = r'\|\|'
 t_NOT = r'!'
-# t_IF = r'if'
-# t_ELSE = r'else'
-# t_WHILE = r'while'
-# t_FOR = r'for'
+t_IF = r'if'
+t_ELSE = r'else'
+t_THEN = r'then'
+t_WHILE = r'while'
+t_FOR = r'for'
+t_DO = r'do'
+t_TO = r'to'
 t_INCREMENT = r'\+\+'
 t_DECREMENT = r'--'
 t_ASSIGN = r'='
@@ -80,6 +84,20 @@ def t_ID(t):
         t.type = "LPAREN"
     elif t.value == 'oven':
         t.type = "RPAREN"
+    elif t.value == 'if':
+        t.type = "IF"
+    elif t.value == 'then':
+        t.type = "THEN"
+    elif t.value == 'else':
+        t.type = "ELSE"
+    elif t.value == 'while':
+        t.type = "WHILE"
+    elif t.value == 'for':
+        t.type = "FOR"
+    elif t.value == 'to':
+        t.type = "TO"
+    elif t.value == 'do':
+        t.type = "DO"
     return t
 
 # Ignored characters
@@ -123,7 +141,28 @@ def p_statement_expr(p):
     else:            # If there's a print statement with an expression
         print(p[3])
 
-def p_expression_binop(p):
+def p_statement_if(p):
+    'statement : IF expression THEN statement opt_else'
+    if p[2]:
+        p[0] = p[4]
+    else:
+        p[0] = p[5] if p[5] is not None else None
+
+def p_opt_else(p):
+    '''opt_else : ELSE statement
+                | empty'''
+    if len(p) > 2:
+        p[0] = p[2]
+    else:
+        p[0] = None
+
+def p_empty(p):
+    'empty :'
+    pass
+
+
+
+def p_expression(p):
     '''expression : expression PLUS expression
                   | expression MINUS expression
                   | expression TIMES expression
@@ -134,9 +173,7 @@ def p_expression_binop(p):
                   | expression LT expression
                   | expression LTE expression
                   | expression GT expression
-                  | expression GTE expression
-                  | expression AND expression
-                  | expression OR expression'''
+                  | expression GTE expression'''
     if p[2] == 'add':
         p[0] = p[1] + p[3]
     elif p[2] == 'slice':
@@ -159,10 +196,53 @@ def p_expression_binop(p):
         p[0] = p[1] > p[3]
     elif p[2] == '>=':
         p[0] = p[1] >= p[3]
-    elif p[2] == '&&':
-        p[0] = p[1] and p[3]
-    elif p[2] == '||':
-        p[0] = p[1] or p[3]
+    else:
+        p[0] = p[1]
+
+def p_expression(p):
+    '''expression : expression PLUS expression
+                  | expression MINUS expression
+                  | expression TIMES expression
+                  | expression DIVIDE expression
+                  | expression POWER expression
+                  | expression EQ expression
+                  | expression NEQ expression
+                  | expression LT expression
+                  | expression LTE expression
+                  | expression GT expression
+                  | expression GTE expression
+                  | expression AND expression
+                  | expression OR expression
+                  | NUMBER'''
+    if len(p) == 4:  # If there's a binary operation
+        if p[2] == 'add':
+            p[0] = p[1] + p[3]
+        elif p[2] == 'slice':
+            p[0] = p[1] - p[3]
+        elif p[2] == 'mix':
+            p[0] = p[1] * p[3]
+        elif p[2] == 'fold':
+            p[0] = p[1] / p[3]
+        elif p[2] == 'power':
+            p[0] = p[1] ** p[3]
+        elif p[2] == '==':
+            p[0] = p[1] == p[3]
+        elif p[2] == '!=':
+            p[0] = p[1] != p[3]
+        elif p[2] == '<':
+            p[0] = p[1] < p[3]
+        elif p[2] == '<=':
+            p[0] = p[1] <= p[3]
+        elif p[2] == '>':
+            p[0] = p[1] > p[3]
+        elif p[2] == '>=':
+            p[0] = p[1] >= p[3]
+        elif p[2] == '&&':
+            p[0] = p[1] and p[3]
+        elif p[2] == '||':
+            p[0] = p[1] or p[3]
+    else:  # If it's a number
+        p[0] = p[1]
 
 def p_expression_unary_minus(p):
     'expression : MINUS expression %prec UMINUS'
@@ -171,10 +251,6 @@ def p_expression_unary_minus(p):
 def p_expression_group(p):
     'expression : LPAREN expression RPAREN'
     p[0] = p[2]
-
-def p_expression_number(p):
-    'expression : NUMBER'
-    p[0] = p[1]
 
 def p_expression_string(p):
     'expression : STRING'
@@ -220,6 +296,16 @@ def p_expression_increment_decrement(p):
             p[0] = variables[p[1]]
         else:
             print(f"Variable '{p[1]}' not found!")
+
+def p_statement_while(p):
+    'statement : WHILE expression DO statement'
+    while p[2]:
+        p[0] = p[4]
+
+def p_statement_for(p):
+    'statement : FOR ID ASSIGN expression TO expression DO statement'
+    for variables[p[2]] in range(p[4], p[6]):
+        p[0] = p[8]
 
 # Error Handler for syntax errors
 def p_error(p):
