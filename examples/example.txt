@@ -1,28 +1,24 @@
-### Code Examples (Also listed in README file):
+Code Examples (Also listed in README file):
 
-**1. Addition and Subtraction**
-```
+1. Addition and Subtraction
 Wals > 3 add 5 slice 2
 Wals > 6.0
 // 3 + 5 - 2 = 6
-```
-**2. Multiplication and Division**
-```
+
+2. Multiplication and Division
 Wals > 10 mix 2 fold 5
 Wals > 4.0
 // 10 * 2 / 5 = 4
-```
-**3. Increment and Decrement**
-```
+
+3. Increment and Decrement
 Wals > x = 10
 10
 Wals > x++
 11
 Wals > x--
 10
-```
-**4. Variable Handling**
-```
+
+4. Variable Handling
 Wals > x = 5
 5
 Wals > y = 10
@@ -32,9 +28,8 @@ Wals > z = x add y
 Wals > bake preheat z oven
 // print(z)
 15
-```
-**5. Boolean and Logic**
-```
+
+5. Boolean and Logic
 Wals > a = 5
 5
 Wals > b = 10
@@ -46,21 +41,20 @@ False
 Wals > bake preheat a != b oven
 // print(a != b)
 True
+
 Wals > bake preheat preheat a < b oven && preheat b==10 oven oven
 //  print((a < b) && (b==10))
 True
+
 Wals > bake preheat preheat a > b oven || preheat b == 10 oven oven 
 // print((a > b) || (b == 10))
 True
-```
-**6. Strings and Comments**
-```
+
+6. Strings and Comments
 Wals > bake preheat "Hello World" oven # This part is recognized as a comment!
 // print("Hello World") # This part is recognized as a comment!
 Hello World
-```
-**7. Arrays**
-```
+
+7. Arrays
 Wals > arr = [1,2,3]
 [1, 2, 3]
-```
