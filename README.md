@@ -12,8 +12,6 @@
 * FOLD: matches with the division operator "/".
 * PREHEAT: matches with left parenthesis "(".
 * OVEN: matches with the right parenthesis ")".
-* BAKE: matches with the newline character "\n".
-* WHISK: declares a variable
 * ID: matches any sequence of letters or underscores starting with a letter or underscore.
 * WHITESPACE: matches with any whitespace.
 * UNKNOWN: matches with any input that is not tokenized.
@@ -71,18 +69,24 @@ Wals > a = 5
 5
 Wals > b = 10
 10
-Wals > print(a == b)
+Wals > print preheat a == b oven
+// print (a == b)
 False
-Wals > print(a != b)
+
+Wals > print preheat a != b oven
+// print(a != b)
 True
-Wals > print((a < b) && (b==10))
+Wals > print preheat preheat a < b oven && preheat b==10 oven oven
+//  print((a < b) && (b==10))
 True
-Wals > print((a > b) || (b == 10))
+Wals > print preheat preheat a > b oven || preheat b == 10 oven oven 
+// print((a > b) || (b == 10))
 True
 ```
 **6. Strings and Comments**
 ```
-Wals > print("Hello World") # This part is recognized as a comment!
+Wals > print preheat "Hello World" oven # This part is recognized as a comment!
+// print("Hello World") # This part is recognized as a comment!
 Hello World
 ```
 **7. Arrays**
